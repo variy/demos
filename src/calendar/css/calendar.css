@@ -1,0 +1,213 @@
+a { text-decoration: none; color: #333; }
+
+/**头部**/
+.datetimepicker {
+  display: none;
+  border: 1px solid #ccc;
+  position: absolute;
+  top: 40px;
+  left: 100px;
+  width: 280px;
+  background-color: #fff;
+  z-index: 10;
+  box-shadow: 1px 1px 6px #ddd;
+}
+.datetimepicker .datetimepicker-top {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+.datetimepicker .datetimepicker-top .year-slider-box,
+.datetimepicker .datetimepicker-top .date-except-year-toggle-box {
+  height: 100%;
+  position: relative;
+}
+.datetimepicker .datetimepicker-top .top-info-box {
+  position: relative;
+  margin: 0 40px;
+  height: 100%;
+  text-align: center;
+  overflow: hidden;
+}
+.datetimepicker .date-slider-btn {
+  display: block;
+  width: 40px;
+  height: 100%;
+  text-align: center;
+  color: #333;
+}
+.date-slider-btn.prev-btn {
+  float: left;
+}
+.date-slider-btn.next-btn {
+  float: right;
+}
+.years-picker-range {
+  position: absolute;
+  top: -26px;
+  left: 82px;
+}
+.datetimepicker .years-top-slider-box {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+.datetimepicker .years-top-slider-box i {
+  float: left;
+  width: 33.3%;
+  font-style: normal;
+  text-align: center;
+  cursor: pointer;
+}
+.datetimepicker .years-top-slider-box i.cur {
+  color: #fff;
+  background-color: #DD5563;
+  cursor: default;
+}
+.datetimepicker .dialog-close {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  z-index: 10;
+  width: 14px;
+  height: 14px;
+  font-size: 14px;
+  color: #000;
+  line-height: 13px;
+  text-align: center;
+  background-color: #efefef;
+  cursor: pointer;
+}
+.datetimepicker .dialog-close:hover {
+  background-color: #ddd;
+}
+/**表格**/
+.dates-tb {
+  position: relative;
+  padding: 0px 10px 6px;
+  font-size: 14px;
+  display: none;
+  /**详细时间切换**/
+}
+.dates-tb .table-condensed {
+  width: 100%;
+}
+.year-cell {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 25%;
+  display: inline-block;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.year-cell > span, .month-cell > span {
+  display: inline-block;
+  width: 100%;
+}
+
+.year-cell > .cal-year {
+  line-height: 1.5;
+}
+.year-cell:hover {
+  background-color: #eee;
+}
+
+.dates-tb .table-condensed li {
+  float: left;
+  text-align: center;
+  overflow: hidden;
+  padding: 6px 0;
+  cursor: pointer;
+}
+.dates-tb .table-condensed li .lunar {
+  font-size: 0.9em;
+  line-height: 1;
+}
+.dates-tb .table-condensed th {
+  font-weight: bold;
+  padding: 5px;
+  
+}
+.dates-tb .table-condensed td {
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+  cursor: pointer;
+}
+.dates-tb .table-condensed td .date-day {
+  color: #DD5563;
+  font-size: 14px;
+}
+.dates-tb .table-condensed td .date-lunar {
+  margin-top: 8px;
+}
+.dates-tb .table-condensed td .date-ganzhi {
+  margin-bottom: 8px;
+}
+.dates-tb .table-condensed .date-cell:hover {
+  /*color: #DD5563;*/
+}
+.dates-tb .table-condensed .date-cell.cur {
+  background: #dd5563;
+  color: #fff;
+  cursor: default;
+}
+.dates-tb .table-condensed .date-cell.cur .date-lunar,
+.dates-tb .table-condensed .date-cell.cur .date-day {
+  color: #fff;
+}
+
+.month-cell-container{
+  width: 100%;
+}
+
+.month-cell-container > .month-cell {
+  width: 25%;
+}
+
+.month-cell-container > .month-cell:hover {
+  background-color: #eee;
+}
+
+.dates-tb .table-condensed.table-condensed-hours li {
+  width: 16.6%;
+}
+
+.dates-tb.datetimepicker-years .table-condensed {
+
+}
+.dates-tb .condensed-hd {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+.dates-tb .condensed-hd .condensed-hd-tab {
+  width: 150px;
+  margin: 0 auto;
+}
+.dates-tb .condensed-bd {
+  min-width: 160px;
+  overflow: hidden;
+}
+.dates-tb .condensed-bd .condensed-bd-detail {
+  padding: 50px;
+}
+.dates-tb .condensed-bd .condensed-bd-detail select {
+  padding: 5px;
+  height: 30px;
+  margin: 0 5px 0 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+}
+.day-cell {
+  padding: 6px 0;
+}
+.day-cell-main {
+  display: inline-block;
+  width: 100%;
+}
+
+.day-cell-lesser {
+  font-size: 0.9em;
+}

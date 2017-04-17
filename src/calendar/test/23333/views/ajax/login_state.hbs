@@ -1,0 +1,31 @@
+{{#if user}}
+<div class="fn-left user-wrap" style="display:block">
+    <a href="javascript:;">
+				<span class="user-avatar">
+					<img src="/static/images/avatar.png" width="30" height="30">
+				</span>
+        <span class="user-name">{{{user.rname}}}</span>
+    </a>
+</div>
+
+<div class="fn-right top-notice-wrap top-request-wrap" style="display:block">
+    <a id="friends_request_btn" class="notice-ico request-btn friends_request_btn" href="javascript:;">
+        {{#if ../count}}
+            <span class="unread_count">{{{../../count}}}</span>
+        {{/if}}
+    </a>
+    <a id="message_btn" class="notice-ico message-btn" href="javascript:;">
+				<!--<span class="unread_count">9</span>-->
+    </a>
+    <a id="myset" class="notice-ico set-btn" href="/loginout"></a>
+
+    <div id="TopFriendsRequest">
+        <div class="request-select" style="display:none;"></div>
+    </div>
+</div>
+{{else}}
+<div class="fn-right user-link" style="display:block">
+    <a id="js-login" href="/login">登录</a>|
+    <a id="js-register" href="/login#register">注册</a>
+</div>
+{{/if}}

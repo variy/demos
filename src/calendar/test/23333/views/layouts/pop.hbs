@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    {{!head标签}}
+    {{>head_tag}}
+    <style type="text/css">
+
+        html,body{background:#fff;overflow-y:hidden;}
+    </style>
+<body>
+    <div class="g-pop-iframe">
+        {{!页面内容}}
+        {{{body}}}
+    </div>
+    {{!js文件}}
+    {{>js_link}}
+
+    {{!每个页面可以在这里加不同的js文件，和js代码}}
+    {{{_sections.page_js}}}
+</body>
+</html>

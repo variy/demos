@@ -1,0 +1,74 @@
+<div class="record-list-page">
+    {{#if RelClasses}}
+    <div class="record-list-hd clearfix">
+        <div class="dropdown filter-relclass-dropdown fn-left">
+            <button type="button" class="btn btn-default dropdown-toggle filter-class-dropdown-toggle">
+                <span class="txt" data-id="0">全部关系</span>
+                <i class="triangle-border"></i>
+            </button>
+            <ul class="dropdown-menu select-list relClassify-select-list">
+                {{#each RelClasses}}
+                    <li data-id="{{id }}"><a href="javascript:;">{{name }}</a></li>
+                {{/each}}
+                <li class="divider"></li>
+                <li data-id="0" class="all-classify"><a href="javascript:;">全部关系</a></li>
+            </ul>
+        </div>
+
+        <div class="dropdown filter-profclass-dropdown fn-left ml5">
+            <button type="button" class="btn btn-default dropdown-toggle filter-class-dropdown-toggle">
+                <span class="txt" data-id="0">全部命局</span>
+                <i class="triangle-border"></i>
+            </button>
+            <ul class="dropdown-menu  profClassify-select-list">
+                {{#each ProfClasses}}
+                    <li data-id="{{id }}"><a href="javascript:;">{{name }}</a></li>
+                {{/each}}
+                <li class="divider"></li>
+                <li data-id="0" class="all-classify"><a href="javascript:;">全部命局</a></li>
+            </ul>
+        </div>
+
+        <div class="fn-right">
+            <div class="dropdown-box  record-list-shift">
+                <div class="_dropdown clearfix" style="position: relative">
+                    <button class="btn btn-primary dropdown-toggle" type="button">
+                        <span class="txt">移动关系</span>
+                        <i class="triangle-border"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        {{#each RelClasses}} 
+                            <li class="classify-item" data-type="move" data-id="{{ id }}"><a  class="classify-item-link" href="javascript:;">{{ name }}</a></li>
+                        {{/each}}
+                        <li class="add-class-func" data-type="add" style="position: relative;">
+                            <a href="javascript:;">
+                                <p>+&nbsp;&nbsp;&nbsp;新的分类</p>
+                                <form style="display: none;">
+                                    <input name="add_classify" maxlength="10" type="text"/>
+                                </form>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <a class="bazi-uibtn-s record-list-delete" href="javascript:;">删除</a>
+            <a class="bazi-uibtn-s toggle-editable" href="javascript:;">编辑</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    {{/if}}
+    <div class="record-list-wrapper">
+        <ul class="record-list-bd clearfix record-list-main" id="record-list-main">
+            {{>records}}
+        </ul>
+        <div class="nomore-tips" style="display: none;">
+            <span>没有更多记录了.....</span>
+        </div>
+    </div>
+</div>
+
+{{#section 'page_js'}}
+    <script src="/static/new_js/page/compare.js"></script>
+    <script src="/static/new_js/page/recordlist.js"></script>
+{{/section}}

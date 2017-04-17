@@ -1,0 +1,277 @@
+{{!排盘}}
+<div id="paipan">
+	<div class="paipan-page-top">
+	    <div class="tb-nav-wrap tb-nav-wrap1">
+	        <ul class="tb-nav clearfix">
+	            <li class="cur">干支</li>
+	            <li>十神</li>
+	            <li>藏干</li>
+	            <li>五行</li>
+	            <div class="clearfix"></div>
+	        </ul>
+	    </div>
+
+	    <div class="user-data">
+	    	<table class="user-data-wrap">
+	    		<tr>
+	    			<td>
+				    	<table class="user-data-table">
+			    			<tbody>
+			        			<tr id="up-data-liuyun"></tr>
+			    			</tbody>
+						</table>
+					</td>
+					<td>
+						<table class="user-data-table">
+			    			<tbody>
+			        			<tr id="up-data">
+			        				<td class="off">
+									    <div class="solar">年</div>
+									    <span class="lunar">{{sizhu.yearZhu.[0]}}</span>
+									    <span class="lunar-side shiShen">
+									        <sup>{{sizhu.yearZhu.[1]}}</sup>
+									        <sub>{{sizhu.yearZhu.[2]}}</sub>
+									    </span>
+									    <span class="lunar-side cangGan">
+									        <sup></sup>
+									        <sub>{{sizhu.yearZhu.[3]}}</sub>
+									    </span>
+									    <span class="lunar-side wuXing">
+									        <sup>{{sizhu.yearZhu.[4]}}</sup>
+									        <sub>{{sizhu.yearZhu.[5]}}</sub>
+									    </span>
+									</td>
+									<td class="off">
+									    <div class="solar">月</div>
+									    <span class="lunar">{{sizhu.monthZhu.[0]}}</span>
+									    <span class="lunar-side shiShen">
+									        <sup>{{sizhu.monthZhu.[1]}}</sup>
+									        <sub>{{sizhu.monthZhu.[2]}}</sub>
+									    </span>
+									    <span class="lunar-side cangGan">
+									        <sup></sup>
+									        <sub>{{sizhu.monthZhu.[3]}}</sub>
+									    </span>
+									    <span class="lunar-side wuXing">
+									        <sup>{{sizhu.monthZhu.[4]}}</sup>
+									        <sub>{{sizhu.monthZhu.[5]}}</sub>
+									    </span>
+									</td>
+									<td class="off">
+									    <div class="solar">日</div>
+									    <span class="lunar">{{sizhu.dayZhu.[0]}}</span>
+									    <span class="lunar-side shiShen">
+									        <sup>{{sizhu.dayZhu.[1]}}</sup>
+									        <sub>{{sizhu.dayZhu.[2]}}</sub>
+									    </span>
+									    <span class="lunar-side cangGan">
+									        <sup></sup>
+									        <sub>{{sizhu.dayZhu.[3]}}</sub>
+									    </span>
+									    <span class="lunar-side wuXing">
+									        <sup>{{sizhu.dayZhu.[4]}}</sup>
+									        <sub>{{sizhu.dayZhu.[5]}}</sub>
+									    </span>
+									</td>
+									<td class="off">
+									    <div class="solar">时</div>
+									    <span class="lunar">{{sizhu.hourZhu.[0]}}</span>
+									    <span class="lunar-side shiShen">
+									        <sup>{{sizhu.hourZhu.[1]}}</sup>
+									        <sub>{{sizhu.hourZhu.[2]}}</sub>
+									    </span>
+									    <span class="lunar-side cangGan">
+									        <sup></sup>
+									        <sub>{{sizhu.hourZhu.[3]}}</sub>
+									    </span>
+									    <span class="lunar-side wuXing">
+									        <sup>{{sizhu.hourZhu.[4]}}</sup>
+									        <sub>{{sizhu.hourZhu.[5]}}</sub>
+									    </span>
+									</td>
+			        			</tr>
+			    			</tbody>
+						</table>
+					</td>
+				</tr>
+			</table>
+	    </div>
+
+	    <div class="detail-tabContent detail-liuyun" id="liuyun">
+		    <div class="subdiv dayun" liuyun-data="dayun" style="display: block;">
+		        <div class="tit">
+		            <span>大 运</span>
+		        </div>
+		        <div class="subdiv-ul">
+		            <table>
+						{{#each dayun}}
+			                <td class="liuyun-item {{ddefault}}">
+			                    <div class="solar">{{age}}</div>
+			                    <span class="lunar">{{ganzhi}}</span>
+			                    <div class="solar">{{year}}</div>
+			                </td>
+		                {{/each}}
+		            </table>
+		        </div>
+		    </div>
+		    <div class="subdiv liunian" liuyun-data="liunian" style="display: none;">
+		        <div class="tit"><span>流 年</span></div>
+		        <div class="subdiv-ul">
+		            <table></table>
+		        </div>
+		    </div>
+		    <div class="subdiv liuyue" liuyun-data="liuyue" style="display: none;">
+		        <div class="tit"><span>流 月</span></div>
+		        <div class="subdiv-ul">
+		            <table></table>
+		        </div>
+		    </div>
+		    <div class="subdiv liuday" liuyun-data="liuday" style="display: none;">
+		        <div class="tit"><span>流 日</span></div>
+		        <div class="subdiv-ul">
+		            <table></table>
+		        </div>
+		    </div>
+		    <div class="subdiv liushi" liuyun-data="liushi" style="display: none;">
+		        <div class="tit"><span>流 时</span></div>
+		        <div class="subdiv-ul">
+		            <table></table>
+		        </div>
+		    </div>
+		</div>
+
+	    <div class="paipan-info">
+	        <table class="text-list-tb">
+	            <tr>
+	                <td><label>基本资料：</label><p class="info">{{uinfo.Pinfo}}</p></td>
+	                <td><label>起 大 运：</label><p class="luck">{{uinfo.Pluck}}</p></td>
+	            </tr>
+	            <tr>
+	                <td><label>出　　日：</label>
+	                	<p class="time">{{uinfo.Pbirth_solar}}</br>{{uinfo.Pbirth_Lunar}}</p>
+                	</td>
+	                <td><label>交 大 运：</label><p class="intersect">{{uinfo.PluckStr}}</p></td>
+	            </tr>
+	        </table>
+	    </div>
+
+	    <div class="paipan-btn-wrap">
+	        <a class="bazi-uibtn-l" id="share-dorcd-btn" href="javascript:;" style="display:none;">保存并分享</a>
+	        <a class="bazi-uibtn-l" id="edit-t-dorcd" href="javascript:;" style="display:none;">编辑</a>
+	        <a class="bazi-uibtn-l" id="dorcd-btn" href="javascript:;">保存</a>
+	        <input type="hidden" id="name" value="{{uinfo.name}}"/>
+	        <input type="hidden" id="igender" value="{{uinfo.igender}}"/>
+	        <input type="hidden" id="birthsolar" value="{{uinfo.birthsolar}}"/>
+	        <input type="hidden" id="birthtime" value="{{uinfo.birthtime}}"/>
+	    </div>
+	</div>
+
+	<div class="detailRecord" id="detailRecord"></div>
+</div>
+
+
+{{!单页面js}}
+{{#section 'page_js'}}
+	<script>
+		// 流运表
+		function data_show(index){
+			if (index == 1) {
+            	$('.user-data-table .lunar-side.shiShen').css('display','inline-block').siblings('.lunar-side').hide();
+            }else if (index == 2) {
+            	$('.user-data-table .lunar-side.cangGan').css('display','inline-block').siblings('.lunar-side').hide();
+            }else if (index == 3) {
+            	$('.user-data-table .lunar-side.wuXing').css('display','inline-block').siblings('.lunar-side').hide();
+            }else{
+            	$('.user-data-table .lunar-side').hide();
+            }
+		}
+
+		// 顶部选项卡
+		$(".tb-nav-wrap1 .tb-nav li").on('click', function(){
+            var sizhu_index = $(this).index();
+			$(this).addClass("cur").siblings().removeClass("cur");
+			data_show(sizhu_index);
+		});
+
+		//选择流运
+		$(".subdiv").delegate(".liuyun-item","click",function(){
+			var subdiv = $(this).parents('.subdiv'),
+				type = subdiv.attr('liuyun-data'),
+				item_index = $(this).index();
+
+			$(this).addClass('cur').siblings().removeClass('cur');
+
+			if (type === 'liushi') {
+				return;
+			};
+
+			// 流年四柱请求
+			$.ajax({
+	            type: 'POST',
+	            url: '/pop/paipan',
+	            data: {
+	            	liuyun_sizhu:type,
+	            	item_index:item_index
+	            },
+	            success: function (data) {
+	             	$('#up-data-liuyun').html(data);
+	             	var sizhu_index = $(".tb-nav-wrap1 .tb-nav li.cur").index();
+					data_show(sizhu_index);
+	            }
+	        });
+
+			// 流年表请求
+			$.ajax({
+	            type: 'POST',
+	            url: '/pop/paipan',
+	            data: {
+	            	act:type,
+	            	item_index:item_index
+	            },
+	            success: function (data) {
+	             	subdiv.hide().next().show().find('table').html(data);
+	            }
+	        });
+		})
+
+		//删除流运
+		$('.user-data-table').delegate(".upclose","click",function(){
+			var tab = $(this).parent('.tab');
+			var liuyun = $('#liuyun');
+			$('.liuyun-item').removeClass('cur');
+			if(tab.hasClass('dayun')){
+				$('.user-data-table .tab').hide();
+				liuyun.find('.dayun').show().siblings('.subdiv').hide();
+			}else if(tab.hasClass('liunian')){
+				$('.user-data-table .liunian,.user-data-table .liuyue,.user-data-table .liuday').hide();
+				liuyun.find('.liunian').show().siblings('.subdiv').hide();
+			}else if(tab.hasClass('liuyue')){
+				$('.user-data-table .liuyue,.user-data-table .liuday').hide();
+				liuyun.find('.liuyue').show().siblings('.subdiv').hide();
+			}else if(tab.hasClass('liuday')){
+				$('.user-data-table .liuday').hide();
+				liuyun.find('.liuday').show().siblings('.subdiv').hide();
+			}
+		})
+
+		//保存记录
+		function recordData(){
+            return {
+                sDate:$('#birthsolar').val(),
+                Pbirth:$('.paipan-info').find('.time').html(),
+				sTime:$('#birthtime').val(),
+				iGender:$('#igender').val(),
+				rName:$('#name').val()
+            };
+        }
+        console.log('个人信息',recordData());
+		$('#dorcd-btn').on('click',function(){
+	        Bazi.pop.show({
+	            src:'/pop/record',
+	            width:600,
+	            title:'保存记录',
+	            data:recordData()
+	        });
+		})
+    </script>
+{{/section}}

@@ -1,0 +1,159 @@
+<div class="pop-login">
+<div class="c-left">
+    <img src="/static/images/placeholder.jpg"
+         alt="placeholder+image" width="162" height="300">
+    <p class="mt15 color_red">
+        <a href="javascript:;">下载到电脑 ▼</a>
+    </p>
+</div>
+<div class="c-right login-box">
+    <div class="mamber-wrap m-Login" data-type="login" style="display: block;">
+        <form action="" method="" id="form-login" novalidate="novalidate">
+            <div class="mamber-item">
+                <input id="login-username" class="mamber-ui-input tel-input" type="text"
+                       name="mobile" autocomplete="off" placeholder="输入手机" value="" datatype="mobile">
+            </div>
+            <div class="mamber-item">
+                <input id="login-pwd" class="mamber-ui-input pwd-input" maxlength="16"
+                       value="" type="password" name="pwd" autocorrect="off" placeholder="密码"
+                       datatype="pwd">
+            </div>
+            <div class="mamber-btn" style="margin-top: 40px;">
+                <input type="button" value="登 录" class="mamber-sub" id="Login_SubmitStatic">
+            </div>
+            <div class="other-link">
+                <p>
+                    <a id="forget-pwd" href="#forget">
+                        忘记密码？
+                    </a>
+                </p>
+                <p>
+                    <a id="toggle-register" href="#register">注册帐号！</a>
+                </p>
+            </div>
+        </form>
+    </div>
+    <div class="mamber-wrap m-Register" data-type="reg" style="display:none;">
+        <form action="" method="" id="form-register" novalidate="novalidate">
+            <div class="mamber-item">
+                <div class="mamber-item-pos clearfix">
+                    <input type="text" id="reg-username" class="mamber-ui-input tel-input require-valid"
+                           name="telephone" autocomplete="off" placeholder="输入手机" value="">
+                    <div class="clearfix">
+                    </div>
+                </div>
+            </div>
+            <div class="mamber-item">
+                <div class="mamber-item-pos clearfix">
+                    <input type="text" id="reg-name" class="mamber-ui-input name-input require-valid"
+                           name="reg_username" autocomplete="off" placeholder="输入姓名" value="" datatype="name">
+                    <div class="clearfix">
+                    </div>
+                </div>
+            </div>
+            <div class="mamber-item">
+                <div class="mamber-item-pos clearfix">
+                    <input id="reg-pwd" class="mamber-ui-input pwd-input require-valid" maxlength="16"
+                           type="password" name="pwd" autocorrect="off" placeholder="创建密码" datatype="pwd">
+                    <div class="clearfix">
+                    </div>
+                </div>
+            </div>
+            <div class="mamber-item reg-calendar" id="calendar1"></div>
+            <div class="mamber-item reg-igender">
+                <label class="sex-label on">
+                    男
+                    <input type="radio" name="sex" value="0" checked="checked">
+                </label>
+                <label class="sex-label">
+                    女
+                    <input type="radio" name="sex" value="1">
+                </label>
+                <input name="regsex" id="regsex" type="hidden" value="0" checked="checked">
+            </div>
+            <div class="mamber-btn">
+                <input type="button" value="注 册" class="mamber-sub" id="register_SubmitStatic">
+                <div class="other-link fn-right" style="margin-top:-20px;">
+                    <p>
+                        <a id="toggle-login" href="#login">已注册，登录</a>
+                    </p>
+                </div>
+                <div class="blank20"></div>
+            </div>
+        </form>
+    </div>
+    <div class="mamber-wrap m-Act" data-type="act" style="display: none;">
+        <form action="" method="" id="form-activation" novalidate="novalidate">
+            <div class="mamber-item act-tips">
+                <p>
+                    已向
+                    <span class="color_red num">
+                    </span>
+                    发送验证
+                </p>
+                <p>
+                    60秒还没收到？&nbsp;&nbsp;&nbsp;&nbsp;
+                    <em>
+                        <span id="reserve-time-counter"></span>秒后可重发
+                    </em>
+                    <a id="act-resend" href="javascript:;" style="display:none;">重发</a>
+                </p>
+            </div>
+            <div class="mamber-item">
+                <input id="ver-pwd" class="mamber-ui-input pwd-input" maxlength="16" type="text"
+                       name="ver_pwd" autocorrect="off" placeholder="输入验证码" datatype="code">
+            </div>
+            <div class="mamber-btn">
+                <input type="button" value="激活帐号" class="mamber-sub" id="activation_SubmitStatic"
+                       style=" font-size: 22px;">
+            </div>
+        </form>
+    </div>
+    <div class="mamber-wrap m-Forget" data-type="forget" style="display: none;">
+        <form action="" method="" id="form-Forget" novalidate="novalidate">
+            <div class="mamber-item">
+                <input id="forget-tel" class="mamber-ui-input tel-input" type="text" name="mobile"
+                       autocomplete="off" placeholder="输入手机" value="" datatype="mobile">
+            </div>
+            <div class="mamber-item">
+                <input type="password" style="display:none">
+                <input id="login-code" class="mamber-ui-input pwd-input fn-left" maxlength="16"
+                       value="" type="text" name="verify-code" autocorrect="off" placeholder="输入验证码"
+                       style="width:240px;" datatype="code">
+                <a id="Forget_Send" class="get-code" href="javascript:;">获取验证码</a>
+                <div class="clearfix"></div>
+                <em id="forget-resend-ticker"><span></span>秒</em>
+            </div>
+            <div class="mamber-item">
+                <input type="password" style="display:none">
+                <input id="login-pwd-new" class="mamber-ui-input pwd-input" maxlength="16"
+                       value="" type="password" name="pwd" autocorrect="off" placeholder="输入新的密码"
+                       datatype="pwd">
+            </div>
+            <div class="mamber-btn">
+                <input type="button" value="重置密码" class="mamber-sub" id="Forget_Submit">
+            </div>
+            <div class="other-link">
+                <p>
+                    <a id="to-register" href="#register" style="margin-right:1em;">注册帐号</a>
+                    <a id="to-login" href="#login">登录</a>
+                </p>
+            </div>
+        </form>
+    </div>
+
+</div>
+<div class="clearfix">
+</div>
+<div>
+    <span style="display:none" id="event_bind_regsiter"></span>
+    <span style="display:none" id="event_bind_login"></span>
+    <span style="display:none" id="event_bind_forget"></span>
+    <span style="display:none" id="event_bind_active"></span>
+</div>
+</div>
+
+{{!单页面js}}
+{{#section 'page_js'}}
+    <script src="/static/new_js/page/login.js"></script>
+{{/section}}

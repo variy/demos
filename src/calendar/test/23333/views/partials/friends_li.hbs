@@ -1,0 +1,54 @@
+{{#each data.list}}
+<li class="uibox-list-item  record-list-item done" style="display:none;" data-birth="{{{birthsolar}}}" data-birthtime="{{{birthtime}}}" data-iGender="{{{igender}}}">
+    <div class="fn-left item-left" style="margin-top:5px; margin-left: 0;">
+        <p class="uavatar">
+            <img src="{{{upicture}}}" width="100" height="100">
+        </p>
+        <p class="namesex">
+            <span class="color_red uname">{{{rname}}}</span>
+            /
+            <span class="usex">{{{sex}}}</span>
+        </p>
+        <p class="utag mt5"><span>{{{mingju}}}</span></p>
+    </div>
+    <div class="fn-left">
+        <ul class="clearfix ganzhi">
+            <li data-send="year" class="year">
+                {{{gz_year}}}
+            </li>
+            <li data-send="month" class="month">
+                {{{gz_month}}}
+            </li>
+            <li data-send="day" class="day">
+                {{{gz_day}}}
+            </li>
+            <li data-send="hour" class="hour">
+                {{{gz_hour}}}
+            </li>
+        </ul>
+        <p class="birthday mt10">
+            {{{solar}}}
+            <br>
+            {{{lunar}}}
+        </p>
+    </div>
+    <div class="select">
+                    <span class="select-btn">
+                    </span>
+        <ul class="select-list">
+            <li class="record-delete">
+                删除好友
+            </li>
+            <li class="record-main">
+                个人主页
+            </li>
+            <li class="record-minli">
+                查看命盘
+            </li>
+        </ul>
+    </div>
+</li>
+{{/each}}
+{{#if data.noMore}}
+    <input type="hidden" id="noMore" value="1">
+{{/if}}

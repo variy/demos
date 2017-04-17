@@ -1,0 +1,27 @@
+{{!搜索好友列表页}}
+{{#each data.list}}
+    <li class="uibox-list-item search-item done" style="display:none;">
+        <img src="{{{upicture}}}" class="fn-left" width="50" height="50">
+        <p class="ml65 f16">
+            <span class="color_red name">{{{rname}}}</span>
+            <span class="ml30 sex">{{{sex}}}</span>
+        </p>
+        <p class="ml65">
+            <span>{{{province}}}</span>
+            <span class="ml10">{{{city}}}</span>
+        </p>
+        {{#if r_s}}
+            <a class="item-btn add-f-btn" data-fuid="251">自己</a>
+        {{/if}}
+        {{#if r_f}}
+            <a class="item-btn add-f-btn" data-fuid="251">好友</a>
+        {{/if}}
+        {{#if r_not_f}}
+            <a class="item-btn add-f-btn" href="javascript:;" data-tuid="{{{../uid}}}"><i>+</i> 加好友</a>
+        {{/if}}
+
+    </li>
+{{/each}}
+{{#if data.noMore}}
+<input type="hidden" id="noMore" value="1">
+{{/if}}

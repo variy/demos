@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    {{!head标签}}
+    {{>head_tag}}
+
+<body>
+    {{!头部导航}}
+    {{>header}}
+
+    {{!对比}}
+    {{>different_left}}
+
+    <div class="grid-1000 mt10 content clearfix">
+        <div class="fn-left left-main" id="main">
+            {{!页面内容}}
+            {{{body}}}
+        </div>
+        <div class="fn-right right-side">
+            {{!页面右侧固定内容}}
+            {{>right_side}}
+
+        </div>
+    </div>
+    {{!版权}}
+    {{>footer}}
+
+    {{!js文件}}
+    {{>js_link}}
+
+    {{!每个页面可以在这里加不同的js文件，和js代码}}
+    {{{_sections.page_js}}}
+
+    {{!服务器提示}}
+    {{#if flash}}
+        <script>
+            Bazi.pop.show({
+                prompt:'{{flash}}',
+                timeout:800,
+                animation:false
+            });
+        </script>
+    {{/if}}
+</body>
+</html>

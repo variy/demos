@@ -1,0 +1,149 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+html {
+	font-size: 10px;
+}
+button {
+	border: none;
+	box-sizing: border-box;
+	outline: none;
+}
+.fl {
+	float: left;
+}
+input {
+	height: 2.2rem;
+	padding: 0;
+}
+ul, li {
+	list-style: none;
+}
+.real-date:hover {
+	background-color: #ddd;
+	cursor: pointer;
+}
+.calendar-close-btn {
+	position: absolute;
+	width: 28px;
+	height: 28px;
+	/*border: 1px solid #ccc;*/
+	border-radius: 50%;
+	cursor: pointer;
+	background-color: #eee;
+	z-index: 3;
+	top: -20px;
+	right: -20px;
+	opacity: 0.8;
+}
+.day-list {
+	width: 100%;
+	overflow: hidden;
+	border-left: 1px solid #666;
+	border-bottom: 1px solid #666;
+}
+.calendar-container {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 20rem;
+}
+.calendar-title {
+	border: 1px solid #666;
+	border-bottom-width: 0; 
+	height: 2.5rem;
+	position: relative;
+}
+.calendar-title h3 {
+	text-align: center;
+	line-height: 2.5rem;
+	margin: 0 2.5rem 0;
+}
+.calendar-title button {
+	height: 100%;
+	width: 2.5rem;
+	position: absolute;
+	top: 0;
+}
+
+.day-tip-list {
+	overflow: hidden;
+	border-left: 1px solid #666;
+	border-top: 1px solid #666;
+
+} 
+
+.day-tip-list > .day-item {
+	box-sizing: border-box;
+	border-right: 1px solid #666;
+	float: left;
+	width: 14.28%;
+	text-align: center;
+	padding: .2rem 0;
+}
+.calendar-title .cal-prev-btn {
+	left: 0;
+}
+.calendar-title .cal-next-btn {
+	right: 0;
+}
+.calendar-box {
+	position: relative;
+
+}
+.calendar-txt {
+}
+.date-item {
+	box-sizing: border-box;
+	float: left;
+	width: 14.28%;
+	border-right: 1px solid #666;
+	padding: 1rem 0;
+	text-align: center;
+	border-top: 1px solid #666; 
+}
+
+.month-item, .year-item {
+	float: left;
+	box-sizing: border-box;
+	width: 25%;
+	text-align: center;
+	padding: 1.2rem 0;
+	border-right: 1px solid #666;
+	border-bottom: 1px solid #666;
+
+}
+
+.month-list, .year-list {
+	overflow: hidden;
+	border-top: 1px solid #666;
+	border-left: 1px solid #666;
+}
+
+.fake-date {
+	/*color: #fff;*/
+}
+
+.date-type-container {
+	display: none;
+}
+
+.show {
+	display: block!important;
+}
+.hidden {
+	display: none;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+.inbshow{
+	display: inline-block;
+}

@@ -1,0 +1,25 @@
+{{#each data.list}}
+<li class="clearfix s-search-item">
+    <img src="{{{upicture}}}" class="fn-left" width="40" height="40">
+    <p class="ml50 color_red name">{{{rname}}}</p>
+    <p class="ml50">
+        <span></span>
+        <span class="ml10"></span>
+    </p>
+    {{#if r_s}}{{!自己}}
+        <span class="friend">自己</span>
+    {{/if}}
+    {{#if r_f}}{{!好友}}
+        <span class="friend">好友</span>
+    {{/if}}
+    {{#if r_not_f}}{{!加好友}}
+        <a class="add-f-btn" href="javascript:;" data-tuid="{{{../uid}}}"><i>+</i> 加好友</a>
+    {{/if}}
+</li>
+{{/each}}
+{{#unless data.count}}
+    <div class="no-result">没有找到有关 <span class="color_red">{{{data.key}}}</span> 的内容</div>
+{{/unless}}
+{{#if data.more}}
+    <a id="searchmore" href="/s/{{{../data.urlKey}}}" class="search-more">更多有关 <span class="color_red">{{{../data.key}}}</span> 的搜索结果</a>
+{{/if}}

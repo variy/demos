@@ -1,0 +1,152 @@
+a,div,ul,li,span{
+	margin:0;
+	padding: 0;
+}
+ul,li { list-style: none;}
+body{
+	background: #fff;
+	color: #999;
+	font-size: 14px;
+	overflow: hidden;
+}
+
+
+.header-top {
+	background-color: #fd7b1b;
+	height: 30px;
+	line-height: 30px;
+	font-weight: 600;
+	text-align: center;
+	color: #fff;
+	word-spacing:0.2em;
+}
+
+.slide-header {
+	position: relative;
+	overflow: hidden;
+	margin: auto;
+	height: 170px;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.slide-header .slide-box{
+	width: 100%;
+	height: 170px;
+	margin: auto;
+	position: relative;
+	-webkit-backface-visibility:hidden;
+	z-index: 1;	
+}
+
+.slide-list:after,
+.slide-list:before{
+	content:' ';
+	display: table;
+}
+
+.slide-list:after{
+	clear:both;
+}
+
+.slide-header .indicator {
+	position: absolute;
+	bottom: 12px;
+	left: 0;
+	width: 100%;
+	height: 10px;
+	text-align: center;
+	z-index: 9;
+}
+
+.slide-header .indicator span{
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	margin-right: 4px;
+	border-radius: 50%;
+	background-color: #fd7b1b;
+	opacity: 0.4;
+	box-sizing:border-box;
+	box-shadow: 0px 1px 2px #555 inset;
+}
+
+.slide-header .indicator .cur {
+	
+	opacity: 1;
+}
+
+.slide-header .btn {
+	position: absolute;
+	z-index: 9;
+	height: 30px;
+	width: 30px;
+	padding: 10px;
+	opacity: 0.8;
+	display: block;
+}
+
+.slide-header .btn span {
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+}
+
+.slide-header .prev span{
+
+	background: url(../img_11/btn-to.png) no-repeat 0 0;
+}
+.slide-header .next span{
+
+	background: url(../img_11/btn-to.png) no-repeat -31px 0;
+}
+
+.slide-header .prev {
+	left: 4px;
+}
+
+.slide-header .next {
+	right: 4px;
+}
+
+.slide-list {
+	height: 100%;
+	position: relative;
+	-webkit-transform-style: preserve-3d;
+	-webkit-backface-visibility: hidden;
+}
+
+.slide-item, .slide-clone-item {
+    position: relative;
+    float: left;    
+    top: 0;
+	height: 100%;
+	display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+
+}
+
+.slide-list :nth-child(2){
+	z-index: 1;
+}
+
+.slide-list :nth-child(3){
+	z-index: -1;
+}
+
+.slide-item img, .slide-clone-item img {
+    width: 100%;
+    height: 100%;
+}
+
+.slide-item img.be-show {
+    display: block;
+}
+
+
+.slide-item a, .slide-clone-item a  {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+

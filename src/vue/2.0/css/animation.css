@@ -1,0 +1,182 @@
+.line-group {
+  height: 100%;
+  position: relative;
+  transform-origin:center center;
+  transition: transform 0.2s;
+}
+
+.list-complete-item {
+  transition: all 1s;
+  display: inline-block;
+  /*margin-right: 10px;*/
+}
+.list-complete-enter, .list-complete-leave-active {
+  opacity: 0;
+  transform: rotate3d(0, 0, 1, 180deg);
+}
+.list-complete-leave-active {
+  /*position: absolute;*/
+}
+
+
+@font-face {font-family: "iconfont";
+  src: url('./fonts/iconfont.eot?t=1464405674'); /* IE9*/
+  src: url('./fonts/iconfont.eot?t=1464405674#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('./fonts/iconfont.woff?t=1464405674') format('woff'), /* chrome, firefox */
+  url('./fonts/iconfont.ttf?t=1464405674') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('./fonts/iconfont.svg?t=1464405674#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size: 1.2rem;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-battery:before { content: "\e63e"; }
+.icon-45:before { content: "\e62d"; }
+.icon-light:before { content: "\e624"; }
+.icon-qiangli:before { content: "\e637"; }
+.icon-leixing:before { content: "\e618"; }
+.icon-kaishi:before { content: "\f016b"; }
+.icon-deng2:before { content: "\e623"; }
+.icon-stop:before { content: "\e644"; }
+.icon-silent:before { content: "\e621"; }
+.icon-voice:before { content: "\e628"; }
+.icon-refresh:before { content: "\e631"; }
+.icon-power:before { content: "\e651"}
+
+.icon-pic {
+  display: inline-block;
+  height: 1.2rem;
+  width: 1.2rem;
+  background: url(../images/icons.png) no-repeat;
+  background-size: auto 1.2rem;
+}
+
+.icon-clock {
+  background-position: 0 0;
+}
+
+.vertical-m {
+  vertical-align: middle;
+}
+.rotateRft-enter-active {
+  animation: rotateRft-in .2s;
+}
+
+@keyframes rotateRft-in {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 90deg);
+    transform: rotate3d(0, 0, 1, 90deg);
+  }
+
+  to {
+    -webkit-transform: rotate3d(0, 0, 1, 180deg);
+    transform: rotate3d(0, 0, 1, 180deg);
+  }
+}
+
+@keyframes rotateRft-out {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 180deg);
+    transform: rotate3d(0, 0, 1, 180deg);
+  }
+
+  to {
+    -webkit-transform: rotate3d(0, 0, 1, 270deg);
+    transform: rotate3d(0, 0, 1, 270deg);
+  }
+}
+
+/**/
+
+.rotateBfr-enter-active {
+  animation: rotateBfr-in .2s;
+}
+
+
+@keyframes rotateBfr-in {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 180deg);
+    transform: rotate3d(0, 0, 1, 180deg);
+  }
+
+  to {
+    -webkit-transform: rotate3d(0, 0, 1, 270deg);
+    transform: rotate3d(0, 0, 1, 270deg);
+  }
+}
+
+@keyframes rotateBfr-out {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 270deg);
+    transform: rotate3d(0, 0, 1, 270deg);
+  }
+
+  to {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
+
+/**/
+.rotateLfb-enter-active {
+  animation: rotateLfb-in .2s;
+}
+
+@keyframes rotateLfb-in {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 270deg);
+    transform: rotate3d(0, 0, 1, 270deg);
+  }
+
+  to {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
+
+@keyframes rotateLfb-out {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
+
+  to {
+    -webkit-transform: rotate3d(0, 0, 1, 450deg);
+    transform: rotate3d(0, 0, 1, 450deg);
+  }
+}
+/**/
+
+.rotateTfl-enter-active {
+  animation: rotateTfl-in .2s;
+}
+
+
+@keyframes rotateTfl-in {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+
+  to {
+    -webkit-transform: rotate3d(0, 0, 1, 90deg);
+    transform: rotate3d(0, 0, 1, 90deg);
+  }
+}
+
+@keyframes rotateTfl-out {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 90deg);
+    transform: rotate3d(0, 0, 1, 90deg);
+  }
+
+  to {
+    -webkit-transform: rotate3d(0, 0, 1, 180deg);
+    transform: rotate3d(0, 0, 1, 180deg);
+  }
+}

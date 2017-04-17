@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>calendar</title>
+	<script src="./vue.js"></script>
+	<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+	<section style="width: 320px; margin: 50px auto 0;">
+		<div id="app" class="calendar-box">
+			<input type="text" name="" v-model="targetDate" @click="showCalendarFn">
+			<calendar :show="showCalendar"></calendar>
+		</div>
+	</section>
+	<script type="x/template" id="util-calendar">
+		<div class="calendar-container" id="demo-1" v-cloak v-show="show">
+			<div class="input-backdrop"></div>
+			<button @click="$parent.showCalendar = false" type="button" class="calendar-close-btn">X</button>
+			<div class="calendar-title">
+				<button type="button" @click="goPrevDate" class="cal-prev-btn">&lt;</button>
+				<h3 @click="togglePrev" class="calendar-txt">
+					<span class="decade-txt hidden" :class="{ show: curType === 'year' }">
+						{{ startYear}} - {{ startYear + 10}}
+					</span>
+					<span class="date-time hidden" :class="{ show: curType !== 'year' }">
+						{{ year }} <span class="hidden" :class="{inbshow: curType === 'day'}">-</span> {{ month | twoString}}
+					</span>
+				</h3>
+				<button type="button" @click="goNextDate" class="cal-next-btn">&gt;</button>
+			</div>
+			<div class="date-container">
+				<div class="date-type-container" :class="{ show: curType==='day' }">	
+					<table class="day-list">
+						<thead>
+							<tr class="day-tip-list">
+								<th class="day-item" v-for="day in dayTips">
+									{{ day}}
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<template v-for="tr in arr">
+									<tr>
+										<td class="date-item {{ date.className}}" v-for="date in tr" @click="choseDay(date)">
+											{{{ date.day }}}
+										</td>
+									</tr>
+							</template>
+						</tbody>
+							
+					</table>
+				</div>
+				<ul class="month-list date-type-container" :class="{ show: curType==='month' }">
+					<li class="month-item fl" v-for="(index, monthName) in monthNames" @click="choseMonth(index+1)">
+						{{ monthName }}
+					</li>
+				</ul>
+
+				<ul class="year-list date-type-container" :class="{ show: curType==='year' }">
+					<li class="year-item" v-for="(index, year) in yearList" @click="choseYear(year)">
+						{{ year }}
+					</li>
+				</ul>
+			</div>
+		</div>
+	</script>
+	<script src="./app.js"></script>
+</body>
+</html>

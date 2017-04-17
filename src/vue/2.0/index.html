@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name ="viewport" content ="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no"> 
+	<title>light</title>
+	<link rel="stylesheet" href="./css/animation.css">
+	<link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+	<div id="container" v-cloak>
+		<header>
+			<div class="fl">
+				<span class="icon-pic icon-clock vertical-m"></span>
+				<span class="vertical-m">{{time}}</span>
+			</div>
+			<div class="fr">
+
+				第 {{level+1}} 关
+			</div>
+			<div class="success-tip">
+				<span>bingo! 进入下一关 > ></span>
+				<span class="only-vertical-align"></span>
+			</div>
+		</header>
+		<section id="field">
+			<ul class="grid-list" v-bind:style="{ 'width': col*4+'rem'}">
+				<grid v-for="(grid, index) in mapData" :sign="grid.sign" :rotate="grid.rotate" :lighted="grid.lighted" :index="index"></grid>
+			</ul>
+		</section>
+		<footer>
+			<div class="fl">
+				<i class="iconfont icon-stop"></i>&nbsp;
+				<i class="iconfont icon-refresh" @touchstart="resetLevelData"></i>
+			</div>
+			<div class="fr">
+				<i class="iconfont icon-voice" @touchstart="switchVoice"></i>
+			</div>
+		</footer>
+	</div>
+	<!-- 格子模板 -->
+	<script  type="x/template" id="grid-tpl">
+
+		<li :class="'grid '+ (lighted?'lighted':'')" @touchstart="roll">
+			<p class="line-group" :style="{transform: aaa}" :data-rotate="rotate">
+				<i v-if="topLine" class="line line-top"></i>
+				<i v-if="rightLine" class="line line-right"></i>
+				<i v-if="bottomLine" class="line line-bottom"></i>
+				<i v-if="leftLine" class="line line-left"></i>
+			</p>
+
+			<span v-if="hasLight" class="iconfont icon-light icon-light-grid"></span>
+			<span v-if="hasBattery"  class="iconfont icon-power icon-battery-grid"></span>
+			<span  class="line only-for-zhuang"></span>
+		</li>
+	</script>
+	<script src="./scripts/libs/vue.js"></script>
+	<script src="./scripts/libs/zepto.min.js"></script>
+
+	<script src="./scripts/map-data.js"></script>
+	<script src="./scripts/power-fn.js"></script>
+	<script src="./scripts/levels.js"></script>
+	<script src="./scripts/app.js"></script>
+</body>
+</html>

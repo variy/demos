@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>calendar demo</title>
+    <link rel="stylesheet" type="text/css" href="../css/style1.css">
+</head>
+<body>
+    <div id="calendar"></div>
+    <!-- lib js -->
+    <script src="../libs/jquery/2.1.3/jquery.js"></script>
+    <script src="../libs/underscore/1.8.3/underscore.js"></script>
+    <script src="../libs/backbone/1.1.2/backbone.js"></script>
+    <script src="../libs/calendar/0.1.4/LunarCalendar.js"></script>
+
+    <!-- app js -->
+    <script src="../js/init/init.js"></script>
+    <script src="../js/init/api.js"></script>
+    <script src="../js/utilities.js"></script>
+    <script src="../js/util/calendar.js"></script>
+
+    <script type="text/template" id="calendar-templates">
+        <div class="control-wrap clearfix">
+            <div class="lunar-ganzhi fn-left">
+                <ul class="grid ganzhi-info">
+                    <li class="col-4" data-send="year"><span class="year"></span></li>
+                    <li class="col-4" data-send="month"><span class="month"></span></li>
+                    <li class="col-4" data-send="day"><span class="day"></span></li>
+                    <li class="col-4" data-send="hour"><span class="hour"></span></li>
+                </ul>
+            </div>
+            <div class="time-control fn-left">
+                <div class="calendar-type cal-toggle">
+                    <span class="cal active" data-caltype="cal" >公历</span>
+                    <span class="lunar" data-caltype="lunar">农历</span>
+                </div>
+                <ul class="cal-lunar-info border-box clearfix">
+                    <li class="control-bar year-bar" data-send="year">
+                        <p class="cal" data-caltype="cal"><span></span>年</p>
+                        <p class="lunar" data-caltype="lunar"><span></span>年</p>
+                    </li>
+                    <li class="control-bar mouth-bar" data-send="month">
+                        <p class="cal" data-caltype="cal"><span></span>月</p>
+                        <p class="lunar" data-caltype="lunar"><span></span></p>
+                    </li>
+                    <li class="control-bar day-bar" data-send="day">
+                        <p class="cal" data-caltype="cal"><span></span>日</p>
+                        <p class="lunar" data-caltype="lunar"><span></span></p>
+                    </li>
+                    <li class="control-bar time-bar" data-send="hour">
+                        <p class="detail-hour"></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="dates clearfix datetimepicker">
+            <div class="datetimepicker-top" data-acpt="top">
+                <a class="sub"><</a><span></span><a class="plus">></a>
+            </div>
+            <div class="dates-tb datetimepicker-years" data-acpt="year"></div>
+            <div class="dates-tb datetimepicker-months"  data-acpt="month"></div>
+            <div class="dates-tb datetimepicker-days" data-acpt="day"></div>
+            <div class="dates-tb datetimepicker-hours" data-acpt="hour"></div>
+        </div>
+    </script>
+
+    <script type="text/template" id="cal-years-templates">
+        <ul class="clearfix border-box table-condensed">
+            <% _.each(years, function(year){ %>
+                <li class="date-cell year-cell" data-year=<%= year.calendar%> >
+                    <p class="solar cal-year"><%= year.calendar%></p>
+                    <p class="lunar"><%= year.lunar%></p>
+                </li>
+            <%})%>
+        </ul>
+    </script>
+
+    <script type="text/template" id="cal-months-templates">
+        <ul class="clearfix border-box table-condensed table-condensed-month">
+            <% _.each(months, function(month,i){%>
+                <li class="date-cell month-cell" data-month=<%=(i+1)%> >
+                    <p class="solar"><%=(month.solarOrLunar)%></p>
+                    <p class="lunar"><%=month.ganzhi%></p>
+                </li>
+            <%})%>
+        </ul>
+    </script>
+
+    <script type="text/template" id="cal-days-templates">
+        <table class="table-condensed">
+            <thead>
+                <tr>
+                    <th width="14.28%">一</th>
+                    <th width="14.28%">二</th>
+                    <th width="14.28%">三</th>
+                    <th width="14.28%">四</th>
+                    <th width="14.28%">五</th>
+                    <th width="14.28%">六</th>
+                    <th width="14.28%">日</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </script>
+
+    <script type="text/template" id="cal-hours-templates">
+        <div class="condensed-hd">
+            <dl class="condensed-hd-tab col-tab clearfix">
+                <dd class="col-bnt on" data-type="simple">简易</dd>
+                <dd class="col-bnt"  data-type="detail">详细</dd>
+            </dl>
+        </div>
+        <div class="condensed-bd">
+            <div class="condensed-bd-item condensed-bd-simple">
+                <ul class="clearfix border-box table-condensed table-condensed-hours">
+                        <% _.each(hours,function(hour,i){ %>
+                            <li class="date-cell hour-cell" data-hour=<%= i%> >
+                                <p class="solar"><%= hour.calendar%></p>
+                                <p class="lunar"><%= hour.ganzhi%></p>
+                            </li>
+                        <% })%>
+                </ul>
+            </div>
+            <div class="condensed-bd-item condensed-bd-detail" style="display: none">
+                <select name="selectH" id="selectH"></select>时
+                <select name="selectM" id="selectM"></select>分
+                <select name="selectS" id="selectS"></select>秒
+            </div>
+        </div>
+    </script>
+
+    <script type="text/javascript">
+        var showCalendar = function(options){
+            var me = this;
+            var data = $.extend({
+                // parent: '#calendar',
+                ganzhi: false,
+                date: "1980-01-01",
+                time: "09:00:00",
+                cb: function(){}
+            }, options);
+
+            var dateData = {
+                year: data.date.split('-')[0],
+                month: data.date.split('-')[1],
+                day: data.date.split('-')[2],
+                hour: parseInt(data.time.split(':')[0])
+            };
+
+            // 初始化日历
+            var calendar = new Calendar({
+                parentEl: data.parent,
+                ganzhiEl: data.ganzhi,
+                startYear: 1900,
+                long: 200,
+                defaultDate: dateData,
+                isLunarInput: false,
+                chosenClass: 'cur'
+            }, function(d){
+                data.cb(d);
+            });
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        showCalendar({
+            parent: $('#calendar'),
+            ganzhi: true,
+            cb: function(data){
+                console.log('cb', data);
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+var datasIcons = {
+	imgFolder:'../../img/icons',
+	imgFormat:'png',
+	pages:{
+		'0':[
+			{name:'斗地主',link:'#',img:'doudizhu'},
+			{name:'腾讯微博',link:'#',img:'weibo'},
+			{name:'斗地主',link:'#',img:'3366'},
+			{name:'斗地主',link:'#',img:'3366'},
+			{name:'斗地主',link:'#',img:'3366'},
+			{name:'斗地主',link:'#',img:'3366'},
+			{name:'斗地主',link:'#',img:'3366'},
+		],
+		'1':[
+			{name:'斗地主',link:'#',img:'3366'},
+			{name:'斗地主',link:'#',img:'3366'},
+			{name:'斗地主',link:'#',img:'3366'},
+			{name:'斗地主',link:'#',img:'3366'},
+			{name:'斗地主',link:'#',img:'3366'},
+			{name:'斗地主',link:'#',img:'3366'},
+			{name:'斗地主',link:'#',img:'3366'}
+		]
+	}
+}

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <title>slide demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="css/slider.css" />
+    <link rel="stylesheet" href="css/layout.css">
+</head>
+<body>
+
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <form class="para-choose" action="">
+            <div class="img-count">
+                <span>图片数量：</span>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="img" value="2" checked>
+                        2
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="img" value="3">
+                        3
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="img" value="4">
+                        4
+                    </label>
+                </div>
+            </div>
+
+            <div class="c-btns">
+                <span>切换按钮：</span>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="has-btns" value="2" checked>
+                        有
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="has-btns" value="3">
+                        没有
+                    </label>
+                </div>
+            </div>
+
+            <div class="c-delay">
+                <span>停留时间(ms)：</span>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="delay" value="3000" checked>
+                        3000
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="delay" value="500">
+                        500
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="delay" value="5000">
+                        5000
+                    </label>
+                </div>
+            </div>
+        </form>        
+    </div>
+    <div class="panel-body">
+        <div class="slide-header">
+            <div class="slide-box">                                 
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <h1 class="title">轮播图是移动端比较常用的功能，不同于PC端，出于性能优化，移动端要使用css3尽量避免DOM操作.网上的插件接口不丰富、流畅度和代码精简不够好。<small>(请用手机打开，或将浏览器调至手机预览模式)</small></h1>
+        <pre>
+new Slider({
+    box: $('.slide-box'),
+    imgData: [
+        {href:'#',src:'img_11/1.jpg'},
+        {href:'#',src:'img_11/2.jpg'},
+        {href:'#',src:'img_11/3.jpg'}       
+    ],
+    hasSlideBtn:true,
+    onImgTap: function(){},
+    afterSlide: function(){}
+});
+// @box: 包住轮播图的块级元素的$对象，必填！
+// @imgData:对象数组，每个对象是图片的点击链接和路径，必填！
+// @afterSlide: 每次切换完成后的回调函数
+// @onImgTap: 点触图片的回调函数
+// @isAutoPlay: 是否自动切换，默认true
+// @speed: 运动速度(多久完成一次切换)，默认400ms
+// @delay:  自动播放的间隔时间,默认3000ms
+// @canSwipeSlide: 能否滑动来切换，默认true
+// @hasSlideBtn： 是否有左右滑动按钮，默认false</pre>
+    </div>
+</div>
+
+
+
+        
+
+
+
+<script src="js_11/zepto.js"></script>
+<script src="js_11/touch.js"></script>
+<script src="js_11/slider3.js"></script>
+</body>
+</html>
+
+<script>
+var slider,
+slider = new Slider({
+    box: $('.slide-box'),
+    imgData: [
+        {href:'#',src:'img_11/1.jpg'},
+        {href:'#',src:'img_11/2.jpg'},
+        {href:'#',src:'img_11/3.jpg'}
+       
+    ],
+    hasSlideBtn:true,
+    onImgTap: function(){
+        console.log(this.index)
+    },
+    afterSlide: function(){
+
+    }
+});
+
+var arrImg = [
+    {href:'#',src:'img_11/1.jpg'},
+    {href:'#',src:'img_11/2.jpg'},
+    {href:'#',src:'img_11/3.jpg'},
+    {href:'#',src:'img_11/4.jpg'}
+];
+var aImg = $('.img-count .radio'),
+    aHasBtns = $('.c-btns .radio')
+    aDelay = $('.c-delay .radio');
+
+aImg.each(function(){
+    $(this).tap(function(){
+        var count = $(this).find('input').val();
+        slider.destroy();
+        setTimeout(function(){ 
+            var imgData = arrImg.slice(arrImg.length-count),
+                _delay = slider.settings.delay;
+            slider = new Slider({
+               box: $('.slide-box'),
+               imgData: imgData,
+                hasSlideBtn:true,
+                delay: _delay
+              
+            });
+
+            if( aHasBtns.children().eq(1).find('input').attr('checked') ){
+                slider.prevBtn.hide();
+                slider.nextBtn.hide();
+            }
+
+       },0)
+
+    })
+});
+
+aHasBtns.each(function(){
+    $(this).tap(function(){
+        var hasBtns = $.trim( $(this).text() ) == '有'?true:false;
+        if(!hasBtns){
+            slider.prevBtn.hide();
+            slider.nextBtn.hide();
+        }else{
+            slider.prevBtn.show();
+            slider.nextBtn.show();
+        }            
+    })
+});
+
+aDelay.each(function(){
+    $(this).tap(function(){
+        var _delay = $.trim( $(this).text() );
+        var _imgData = slider.settings.imgData;
+        slider.destroy();
+        slider = new Slider({
+            box: $('.slide-box'),
+            imgData: _imgData,
+            delay: _delay,
+            hasSlideBtn:true
+        });
+
+        if( aHasBtns.children().eq(1).find('input').attr('checked') ){
+            slider.prevBtn.hide();
+            slider.nextBtn.hide();
+        }
+    })
+});
+</script>
+  

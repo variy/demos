@@ -1,0 +1,730 @@
+<script type="text/template" id="personInfo-templates">
+    <div class="personInfo-page">
+        <header class="header header-wrap">
+            <div class="header-wrap clearfix">
+                <h2>个人资料</h2>
+            </div>
+            <a class="a-left a-back"><span>返回</span></a>
+            <a id="storage-btn" class="a-right a-edit"></a>
+        </header>
+        <section id="editInfo-sect" class="userinfo-wrap">
+            <table class="userinfo-tab">
+                <tr>
+                    <td class="left-info">头像</td>
+                    <td class="right-info">
+                        <img style="width:0.64rem;display:block; float:right;" src="images/avatar.png">
+                    </td>
+                </tr>
+                <tr id="editname-btn">
+                    <td class="left-info">昵称</td>
+                    <td id="user-name" class="right-info"></td>
+                </tr>
+                <tr id="editgender-btn">
+                    <td class="left-info">性别</td>
+                    <td id="user-gender" class="right-info"></td>
+                </tr>
+                <tr id="editarea-btn">
+                    <td class="left-info">出生地</td>
+                    <td id="user-area" class="right-info"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" id="info-calendar" class="Bday-control">
+                    </td>
+                </tr>
+                <tr class="L-birthday">
+                    <td class="left-info">阴历</td>
+                    <td id="user-lunar" class="right-info"></td>
+                </tr>
+                <tr class="L-birthday">
+                    <td class="left-info">起大运</td>
+                    <td id="user-luck" class="right-info"></td>
+                </tr>
+                <tr class="L-birthday">
+                    <td class="left-info">节气</td>
+                    <td class="right-info">
+                        <p>立春 2015年12月2日 12:30:12</p>
+                        <p>清明 2015年12月2日 12:30:12</p>
+                    </td>
+                </tr>
+            </table>
+            <div class="mamber-btn">
+                <input type="button" value="查看命盘" class="mamber-sub" id="check-paipan">
+            </div>
+        </section>
+
+        <section id="editName-sect" class="editName-wrap">
+            <input type="text" maxlength="5" autocomplete="off" class="" name="name" id="edit-name-input" placeholder="输入姓名" value="">
+            <input type="button" value="确 定" class="" id="EditName_Submit">
+        </section>
+
+        <section id="editGender-sect" class="gender-wrap">
+                <div class="gender-title">性别</div>
+                <label class="i-label">男<input name="sex" data-sexcode="0" type="radio"><i>√</i></label>
+                <label class="i-label">女<input name="sex" data-sexcode="1" type="radio"><i>√</i></label>
+        </section>
+        <section id="editArea-sect" class="area-wrap">
+            <div class="area-items clearfix">
+                <div id="cur-area" class="curarea"><span class="area"></span><span class="cur">已选地区</span></div>
+                <div class="area-list">
+                    <ul id="provinceList"></ul>
+                    <ul id="cityList"></ul>
+                <div>
+            </div>
+        </section>
+    </div>
+</script>
+
+
+<script type="text/template" id="login-templates">
+    <header class="header">
+        <div class="header-wrap clearfix">
+            <a href="javascript:;" class="a-left a-back"><span>返回</span></a>
+            <h2 id="user-status">登录</h2>
+        </div>
+    </header>
+    <!-- 登录 -->
+    <div class="user-page-box">
+        <section id="user-login" class="mamber-wrap login-wrap">
+            <form action="" method="" id="form-login">
+                <div class="mamber-item">
+                    <div class="mamber-item-pos clearfix">
+                        <label>帐号</label>
+                        <input id="login-username" class="mamber-ui-input tel-input" type="number" name="uname" autocomplete="off" placeholder="手机号码" value="">
+                    </div>
+                </div>
+                <div class="mamber-item">
+                    <div class="mamber-item-pos clearfix">
+                    <label>密码</label>
+                    <input id="login-pwd" class="mamber-ui-input pwd-input" maxlength="16" value="" type="password" name="pwd" autocorrect="off" placeholder="密码">
+                    </div>
+                </div>
+
+                <div class="mamber-btn">
+                    <input type="button" value="登 录" class="mamber-sub" id="Login_SubmitStatic">
+                </div>
+
+                <a class="reg-link" href="#!/reg">注册</a>
+            </form>
+        </section>
+        <!-- 登录 end -->
+
+        <!-- 注册 -->
+        <section id="register" class="mamber-wrap register-wrap">
+
+            <form action="" method="" id="form-register">
+                <div class="mamber-item">
+                    <div class="mamber-item-pos clearfix">
+                        <label>昵称</label>
+                        <input id="reg-name" class="mamber-ui-input name-input" name="name" autocomplete="off" placeholder="例如:程成" value="">
+                    </div>
+                </div>
+
+                <div class="mamber-item">
+                    <div class="mamber-item-pos clearfix">
+                        <label>手机号</label>
+                        <input id="reg-username" class="mamber-ui-input tel-input" type="number" name="uname" autocomplete="off" placeholder="手机号码" value="">
+                    </div>
+                </div>
+                <div class="mamber-item">
+                    <div class="mamber-item-pos clearfix">
+                    <label>密码</label>
+                    <input id="reg-pwd" class="mamber-ui-input pwd-input" maxlength="16" type="password" name="pwd" autocorrect="off" placeholder="密码">
+                    </div>
+                </div>
+
+                <div class="mamber-btn">
+                    <input type="button" value="注 册" class="mamber-sub" id="register_SubmitStatic">
+                </div>
+            </form>
+        </section>
+        <!-- 注册 end-->
+
+        <!-- 激活 -->
+        <section id="activation" class="mamber-wrap activation-wrap">
+            <form action="" method="" id="form-activation">
+                <div class="tips-text">已向<span class="num">13128876566</span>发送验证，50秒后<a id="act-resend" >重发</a></div>
+                <div class="mamber-item">
+                    <div class="mamber-item-pos clearfix">
+                    <label>验证码</label>
+                    <input id="ver-pwd" class="mamber-ui-input pwd-input" maxlength="16" type="text" name="pwd" autocorrect="off" placeholder="收到的验证码">
+                    </div>
+                </div>
+
+                <div class="mamber-btn">
+                    <input type="button" value="激 活" class="mamber-sub" id="activation_SubmitStatic">
+                </div>
+            </form>
+        </section>
+    </div>
+</script>
+
+<script type="text/template" id="index-templates">
+    <header class="header">
+        <div class="header-wrap clearfix">
+            <h2>快速起盘</h2>
+        </div>
+    </header>
+    <section class="content">
+        <div class="name-input-wrap">
+            <input type="text" maxlength="5" autocomplete="off" name="name" id="name" placeholder="输入姓名" value="">
+            <ul class="clearfix sex-tab col-tab">
+                <li data="0" class="col-bnt on">男</li>
+                <li data="1" class="col-bnt">女</li>
+            </ul>
+            <input name="sex" id="sex" type="hidden" value="0">
+        </div>
+        <div id="calender" class="calender-wrap"></div>
+        <a href="javascript:;" id="qipan-btn" class="control-btn">起盘</a>
+    </section>
+
+    <footer class="grid-640 footer clearfix">
+        <nav class="grid footer-nav">
+            <a class="col-5 F-track cur">快速起盘</a>
+            <a class="col-5 Record">记录</a>
+            <a class="col-5 Me">我</a>
+            <a class="col-5 Class">学堂</a>
+            <a class="col-5 Test">测试</a>
+        </nav>
+    </footer>
+</script>
+
+<script type="text/template" id="paipan-templates">
+    <header class="header">
+        <div class="header-wrap clearfix">
+            <a id="back-btn" class="a-left a-back"><span>返回</span></a>
+            <div class="tb-nav-wrap">
+                <ul class="tb-nav clearfix">
+                    <li class="cur">干支</li>
+                    <li>十神</li>
+                    <li>藏干</li>
+                    <li>五行</li>
+                </ul>
+            </div>
+            <a id="dorcd-btn"  class="a-right a-edit"><span>储存</span></a>
+        </div>
+    </header>
+
+    <section class="content">
+        <div id="user-info" class="user-info">
+            <span class="name"></span>
+            <span class="gender">男</span>
+            <span class="time"></span>
+        </div>
+        <div class="user-data">
+            <table>
+                <tbody>
+                    <tr id="up-data"></tr>
+                </tbody>
+            </table>
+            <div id="step-data" class="step-nav">
+                <ul></ul>
+            </div>
+        </div>
+
+        <div id="detail-content" class="detail-content">
+            <!-- 资料 -->
+            <div class="detail-tabContent detail-info" style="display: block;">
+                <ul class="grid detail-tb-hd">
+                    <li class="col-2 tb-hd-item cur"><span>基本信息</span></li>
+                    <li class="col-2 tb-hd-item"><span>年表</span></li>
+                </ul>
+                <div class="detail-tb-bd">
+                    <div class="tb-bd-item" style="display:block;">
+                        <table class="text-list-tb">
+                            <tr>
+                                <th>基本资料</th>
+                                <td><p class="info"></p></td>
+                            </tr>
+                            <tr>
+                                <th>出生日期</th>
+                                <td><p class="time"></p></td>
+                            </tr>
+                            <tr>
+                                <th>起大运</th>
+                                <td><p class="luck"></p></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><p class="intersect"></p></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="tb-bd-item liunian-tab" id="nianbiao" style="display:none;">
+                        <ul class="grid">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- 资料 end -->
+
+            <!-- 流运 -->
+            <div class="detail-tabContent grid detail-liuyun" id="liuyun">
+                <div class="subdiv dayun">
+                    <div class="tit"><span>大运</span></div>
+                    <div class="subdiv-ul"><table></table></div>
+                </div>
+                <div class="subdiv liunian">
+                    <div  class="tit"><span>流年</span></div>
+                    <div class="subdiv-ul"><table></table></div>
+                </div>
+                <div class="subdiv liuyue">
+                    <div  class="tit"><span>流月</span></div>
+                    <div class="subdiv-ul"><table></table></div>
+                </div>
+                <div class="subdiv liuday">
+                    <div  class="tit"><span>流日</span></div>
+                    <div class="subdiv-ul"><table></table></div>
+                </div>
+                <div class="subdiv liushi">
+                    <div  class="tit"><span>流时</span></div>
+                    <div class="subdiv-ul"><table></table></div>
+                </div>
+            </div>
+            <!-- 流运 end-->
+
+            <!-- 事件 -->
+            <div class="detail-tabContent detail-event"></div>
+            <!-- 事件 end -->
+
+            <!-- 六亲 -->
+            <div class="detail-tabContent detail-relatives">
+                <table class="rel-tb">
+                    <tr>
+                        <td class="rel">
+                            <span><img src="images/font-face1.png"></span>
+                        </td>
+                        <td class="solar">
+                            <img width="85" src="http://266.com/assets/img/game-logo/candy-rain.png">
+                            <strong>戴惠萍</strong>
+                            <p>2014-12-22  18:00</p>
+                        </td>
+                        <td class="lunar">
+                            <span class="lunar">甲午</span>
+                            <span class="lunar">甲午</span>
+                            <span class="lunar">甲午</span>
+                            <span class="lunar">甲午</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="rel">
+                            <span><img src="images/font-face2.png"></span>
+                        </td>
+                        <td class="solar">
+                            <img src="http://266.com/assets/img/game-logo/candy-rain.png">
+                            <strong>戴惠萍</strong>
+                            <p>2014-12-22  18:00</p>
+                        </td>
+                        <td class="lunar">
+                            <span class="lunar">甲午</span>
+                            <span class="lunar">甲午</span>
+                            <span class="lunar">甲午</span>
+                            <span class="lunar">甲午</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="rel">
+                            <span><img src="images/font-face3.png"></span>
+                        </td>
+                        <td class="solar">
+                            <img src="http://266.com/assets/img/game-logo/candy-rain.png">
+                            <strong>戴惠萍</strong>
+                            <p>2014-12-22  18:00</p>
+                        </td>
+                        <td class="lunar">
+                            <span class="lunar">甲午</span>
+                            <span class="lunar">甲午</span>
+                            <span class="lunar">甲午</span>
+                            <span class="lunar">甲午</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="rel">
+                            <span><img src="images/font-face4.png"></span>
+                        </td>
+                        <td class="solar">
+                            <img src="http://266.com/assets/img/game-logo/candy-rain.png">
+                            <strong>戴惠萍</strong>
+                            <p>2014-12-22  18:00</p>
+                        </td>
+                        <td class="lunar">
+                            <span class="lunar">甲午</span>
+                            <span class="lunar">甲午</span>
+                            <span class="lunar">甲午</span>
+                            <span class="lunar">甲午</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="rel">
+                            <span><img src="images/font-face5.png"></span>
+                        </td>
+                        <td class="solar">
+                            <img src="http://266.com/assets/img/game-logo/candy-rain.png">
+                            <strong>戴惠萍</strong>
+                            <p>2014-12-22  18:00</p>
+                        </td>
+                        <td class="lunar">
+                            <span class="lunar">甲午</span>
+                            <span class="lunar">甲午</span>
+                            <span class="lunar">甲午</span>
+                            <span class="lunar">甲午</span>
+                        </td>
+                    </tr>
+                </table>
+                <a href="" class="control-btn">添加六亲</a>
+            </div>
+            <!-- 六亲 end -->
+        </div>
+    </section>
+
+    <footer class="grid-640 footer" style="background-color:#f9f9f9;">
+        <nav class="tb-nav-wrap">
+            <ul class="detail-tabMenu tb-nav clearfix">
+                <li class="detail-tabMenu-item cur">资料</li>
+                <li class="detail-tabMenu-item">流运</li>
+                <li class="detail-tabMenu-item">事件</li>
+                <li>六亲</li>
+            </ul>
+        </nav>
+    </footer>
+</script>
+
+<script type="text/template" id="events-templates">
+    <div class="events-page">
+        <header class="header header-wrap">
+            <div class="header-wrap fn-clear">
+                <h2>添加事件</h2>
+            </div>
+            <a class="a-left a-back"><span>返回</span></a>
+            <a class="a-right a-done"><span>完成</span></a>
+        </header>
+        <section id="edit-content" class="content">
+            <div class="user-info"></div>
+            <table class="events-edit-tab">
+                <tr id="edittime-btn">
+                    <td class="left-info">时间：</td>
+                    <td class="right-info">
+                        <span id="events-time"></span><i id="events-time-edit">编辑</i>
+                    </td>
+                </tr>
+                <tr id="editlabel-btn">
+                    <td class="left-info">标签：</td>
+                    <td class="right-info">
+                        <div class="event-tag-wrap">
+                            <input type="text" autocomplete="off" name="event-tag-i" id="events-label" placeholder="输入标签">
+                        </div>
+                    </td>
+                </tr>
+                <tr id="editdesc-btn">
+                    <td class="left-info">简述：</td>
+                    <td class="right-info">
+                        <textarea id="events-desc" class="event-Des" placeholder="简述" rows="5"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="label-content" class="content">
+            <div class="input-label-wrap"><input id="input-label" type="text" name="input-label" placeholder="输入标签" value></div>
+            <h2 class="label-h2">常用标签：</h2>
+            <ul id="common-label"></ul>
+        </section>
+    </div>
+</script>
+
+<script type="text/template" id="eventsList-templates">
+        <table>
+            <%
+                _.each(obj, function(data){
+            %>
+                <tr>
+                    <td data-id="<%= data.id %>" class="tenth-1">
+                        <span class="lunar"><%= data.ganzhi %></span>
+                        <div class="solar"><%= data.year %></div>
+                    </td >
+                    <td data-id="<%= data.id %>" class="tenth-9" colspan="2">
+                        <p><span><%= data.label %></span><%= data.desc %></p>
+                        <span class="event-time"><%= data.date %> <%= data.time %></span>
+                    </td >
+                    <td data-id="<%= data.id %>" class="tenth-2"><span class="delete-btn">删除</span></td>
+                </tr>
+            <%
+                });
+            %>
+        </table>
+</script>
+
+<script type="text/template" id="sizhu-templates">
+    <td class="col-6 off">
+        <div class="solar"><%= bigspan %></div>
+        <span class="lunar"><%= ganzhi %></span>
+        <span class="lunar-side">
+            <sup><%= tiangan %></sup>
+            <sub><%= dizhi %></sub>
+        </span>
+    </td>
+</script>
+
+<script type="text/template" id="detail-templates">
+    <td class="liuyun-item">
+        <div class="solar"><%= bigspan %></div>
+        <span class="lunar"><%= ganzhi %></span>
+        <div class="solar"><%= span %></div>
+
+        <span class="lunar-side">
+            <sup><%= tiangan %></sup>
+            <sub><%= dizhi %></sub>
+        </span>
+    </td>
+</script>
+
+<script type="text/template" id="step-templates">
+    <li class="<%= type %>">
+        <span><%= titspan %></span>
+        <span><%= ganzhi %></span>
+    </li>
+</script>
+
+<script type="text/template" id="tab-templates">
+    <td class="tab <%= type %>">
+        <div class="solar">
+            <span class="tit"><%= titspan %></span>
+            <span class="big"><%= bigspan %></span>
+            <span><%= span %></span>
+        </div>
+        <span class="lunar"><%= ganzhi %></span>
+        <span class="lunar-side">
+            <sup><%= tiangan %></sup>
+            <sub><%= dizhi %></sub>
+        </span>
+        <span class="upclose" title="关闭">×</span>
+    </td>
+</script>
+
+<script type="text/template" id="record-templates">
+<div id="record">
+    <header class="header">
+        <div class="header-wrap clearfix">
+            <h2>记录</h2>
+            <a class="a-right a-edit" style="right:0.15rem;"><img width="72" src="images/record-more.png"></a>
+            <div class="record-more-edit" style="display:none">
+                <i class="arrow"></i>
+                <ul>
+                    <li id="record-add">添加</li>
+                    <li id="record-classify">分类</li>
+                    <li id="record-edit">编辑</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section class="content">
+        <div id="user-record" class="detail-relatives">
+            <div class="record-search">
+                <i class="search-bg">名字或电话</i>
+                <input type="text" name="record-search" placeholder="名字或电话">
+            </div>
+
+        </div>
+    </section>
+    <div class="record-contents record-list-wrapper" id ="record-list-wrapper" style="position: absolute; left:0; top:1.65rem; bottom: 0.95rem; width:100%">
+        <div class="record-scroller">
+        </div>
+    </div>
+    <footer class="grid-640 footer clearfix">
+        <nav class="grid footer-nav">
+            <a id="fast-btn" class="col-5 F-track">快速起盘</a>
+            <a class="col-5 Record cur">记录</a>
+            <a class="col-5 Me">我</a>
+            <a class="col-5 Class">学堂</a>
+            <a class="col-5 Test">测试</a>
+        </nav>
+        <div class="bottom-overlay" style=" display:none; position:absolute;left:0; top:0;height:100%; width:100%; background-color:#fff; font-size: 0.4rem; text-align: center; line-height: 0.9rem; color:#dd5563;">移动到</div>
+    </footer>
+</div>
+</script>
+
+<script type="text/template" id="record-pop-templates">
+    <section class="record-pop" style="display: none;">
+        <div class="record-overlay"></div>
+        <div class="content">
+            <header class="pop-hd">
+                <dl class="record-col-tab col-tab clearfix">
+                    <dd class="col-bnt on" data-classify="rel" >关系</dd>
+                    <dd class="col-bnt"  data-classify="prof">专业</dd>
+                </dl>
+                <span class="fn-right close-pop">×</span>
+            </header>
+            <div class="record-add-wrap">
+                <input type="text" autocomplete="off" class="" name="name" placeholder="分类名称" value="">
+                <input type="button" id="sub-classify" value="确 定" class="">
+            </div>
+
+            <div class="classify-content-box">
+                <div class="record-class-wrap rel-classify-content"  data-content="rel" style="display: block;">
+                    <% relClassify.forEach(function(item,idx){ %>
+                        <label for='rel-<%= idx%>' ><%= item.name%> <input type="radio" name="rel"  data-id="<%= item.id%>" id="rel-<%= idx%>" ></label>                       
+                    <% })%>
+                </div>
+                <div class="record-class-wrap prof-classify-content"  data-content="prof">
+                    <% profClassify.forEach(function(item,idx){ %>
+                        <label for='prof-<%= idx%>'><%= item.name%> <input type="radio" name="rel" data-id="<%= item.id%>" id="prof-<%= idx%>" ></label>                       
+                    <% })%>
+                </div>
+            </div>
+        </div>
+            
+    </section>
+</script>
+
+<script type="text/template" id="record-list-templates">
+    <% relTitle.forEach(function(title,idx){ %>
+        <h3 class="record-c-hd" data-title="<%=title.name %>" ><%= title.name%> <!--<span class="add-rec-type">+</span>--></h3>
+        <ul class="record-c-bd" data-content="<%=title.name%>" ></ul>
+    <% }) %>
+</script>
+
+<script type="text/template" id="record-item-templates">
+   
+    <div class="check-td" style="display: none">
+        <input type="checkbox" id="<%= item.randomId%>" name="" />
+        <label for="<%= item.randomId%>"></label>
+    </div>
+    <div class="user-record-info">
+        <div class="solar">
+            <img width="85" src=<%= item.favicon%> >
+            <strong><%= item.name%></strong><small class="prof-classify">(<%= item.profClassify%>)</small>
+            <p><%=item.sDate %> <%=item.time%></p>
+        </div>
+        <div class="lunar">
+            <span><%=item.GanZhiInfo[0]%></span>
+            <span><%=item.GanZhiInfo[1]%></span>
+            <span><%=item.GanZhiInfo[2]%></span>
+            <span><%=item.GanZhiInfo[3]%></span>
+        </div>
+    </div>
+
+    <!--记录类别-->
+    <!--
+    <span>同事</span>    
+    <span class="del-rec-type">删除</span>
+    -->
+</script>
+
+<script type="text/template" id="calendarBtn-templates">
+    <div class="control-wrap clearfix">
+        <div class="lunar-ganzhi fn-left">
+            <ul class="grid ganzhi-info">
+                <li class="col-4"><span class="year"><%= GanZhiYear %></span></li>
+                <li class="col-4"><span class="month"><%= GanZhiMonth %></span></li>
+                <li class="col-4"><span class="day"><%= GanZhiDay %></span></li>
+                <li class="col-4"><span class="hour"><%= GanZhiHour %></span></li>
+            </ul>
+        </div>
+        <div class="time-control fn-left">
+            <div class="calendar-type cal-toggle">
+                <span class="cal active" data-caltype="cal" >公历</span>
+                <span class="lunar" data-caltype="lunar">农历</span>
+            </div>
+            <ul class="cal-lunar-info border-box clearfix">
+                <li class="control-bar year-bar" data-send="year">
+                    <p class="cal" data-caltype="cal"><span><%= year %></span>年</p>
+                    <p class="lunar" data-caltype="lunar"><span><%= lunarYear %></span>年</p>
+                </li>
+                <li class="control-bar mouth-bar" data-send="month">
+                    <p class="cal" data-caltype="cal"><span><%= month %></span>月</p>
+                    <p class="lunar" data-caltype="lunar"><span><%= lunarMonthName %></span></p>
+                </li>
+                <li class="control-bar day-bar" data-send="day">
+                    <p class="cal" data-caltype="cal"><span><%= day %></span>日</p>
+                    <p class="lunar" data-caltype="lunar"><span><%= lunarDayName %></span></p>
+                </li>
+                <li class="control-bar time-bar" data-send="hour">
+                    <p class="detail-hour" style="display: block"><%= hour %>:00:00 <%= GanZhiHour.slice(1) %>时</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="calendarPop-templates">
+    <div class="overlay"></div>
+    <div class="calendar-pop">
+        <div class="pop-hd">
+            <span class="fn-left close-pop">×</span>
+            <span class="fn-right finish-pop">完成</span>
+        </div>
+        <div class="control-wrap clearfix">
+            <div class="lunar-ganzhi fn-left">
+                <ul class="grid ganzhi-info">
+                    <li class="col-4" data-send="year"><span class="year"><%= GanZhiYear %></span></li>
+                    <li class="col-4" data-send="month"><span class="month"><%= GanZhiMonth %></span></li>
+                    <li class="col-4" data-send="day"><span class="day"><%= GanZhiDay %></span></li>
+                    <li class="col-4" data-send="hour"><span class="hour"><%= GanZhiHour %></span></li>
+                </ul>
+            </div>
+            <div class="time-control fn-left" id="slider-icons">
+                <div class="calendar-type cal-toggle">
+                    <span class="cal active" data-caltype="cal" >公历</span>
+                    <span class="lunar" data-caltype="lunar">农历</span>
+                </div>
+                <ul class="cal-lunar-info border-box clearfix">
+                    <li class="control-bar year-bar" data-send="year">
+                        <p class="cal" data-caltype="cal"><span><%= year %></span>年</p>
+                        <p class="lunar" data-caltype="lunar"><span><%= lunarYear %></span>年</p>
+                    </li>
+                    <li class="control-bar mouth-bar" data-send="month">
+                        <p class="cal" data-caltype="cal"><span><%= month %></span>月</p>
+                        <p class="lunar" data-caltype="lunar"><span><%= lunarMonthName %></span></p>
+                    </li>
+                    <li class="control-bar day-bar" data-send="day">
+                        <p class="cal" data-caltype="cal"><span><%= day %></span>日</p>
+                        <p class="lunar" data-caltype="lunar"><span><%= lunarDayName %></span></p>
+                    </li>
+                    <li class="control-bar time-bar" data-send="hour">
+                        <p class="simple-hour" style="display: block"></p>
+                        <p class="detail-hour"><%= hour %>:00:00 <%= GanZhiHour.slice(1) %>时</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="dates clearfix datetimepicker" id="slider"></div>
+    </div>
+</script>
+
+<script type="text/template" id="calendar-templates">
+    <div class="control-wrap clearfix">
+        <div class="lunar-ganzhi fn-left">
+            <ul class="grid ganzhi-info">
+                <li class="col-4" data-send="year"><span class="year"></span></li>
+                <li class="col-4" data-send="month"><span class="month"></span></li>
+                <li class="col-4" data-send="day"><span class="day"></span></li>
+                <li class="col-4" data-send="hour"><span class="hour"></span></li>
+            </ul>
+        </div>
+        <div class="time-control fn-left" id="slider-icons">
+            <div class="calendar-type cal-toggle">
+                <span class="cal active" data-caltype="cal" >公历</span>
+                <span class="lunar" data-caltype="lunar">农历</span>
+            </div>
+            <ul class="cal-lunar-info border-box clearfix">
+                <li class="control-bar year-bar" data-send="year">
+                    <p class="cal" data-caltype="cal"><span></span>年</p>
+                    <p class="lunar" data-caltype="lunar"><span></span>年</p>
+                </li>
+                <li class="control-bar mouth-bar" data-send="month">
+                    <p class="cal" data-caltype="cal"><span></span>月</p>
+                    <p class="lunar" data-caltype="lunar"><span></span></p>
+                </li>
+                <li class="control-bar day-bar" data-send="day">
+                    <p class="cal" data-caltype="cal"><span></span>日</p>
+                    <p class="lunar" data-caltype="lunar"><span></span></p>
+                </li>
+                <li class="control-bar time-bar" data-send="hour">
+
+                    <p class="simple-hour" style="display: block"></p>
+                    <p class="detail-hour"></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="dates clearfix datetimepicker" id="slider"></div>
+</script>

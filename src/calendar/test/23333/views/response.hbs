@@ -1,0 +1,108 @@
+{{!好友请求列表}}
+<div class="friends_search-wrapper">
+    <div class="clearfix">
+        <h2 class="f16 fn-left"><strong>{{{data.count}}}</strong>个请求待回应</h2>
+        <a class="f16 fn-right my-request" href="/request">查看已发送的请求</a>
+        <div class="clearfix"></div>
+    </div>
+    {{#if data.count}}
+    <ul class="search-list clearfix">
+        {{#each ../data.list}}
+        <li class="uibox-list-item search-item done no-response" data-fuid="{{{fuid}}}">
+            <img src="{{{upicture}}}" class="fn-left" width="50" height="50">
+            <p class="ml65 f16">
+                <span class="color_red name">{{{rname}}}</span>
+                <span class="ml30 sex">{{{sex}}}</span>
+            </p>
+            <p class="ml65">
+                <span>{{{province}}}</span>
+                <span class="ml10">{{{city}}}</span>
+            </p>
+            <p class="request-btn-wrap">
+                <a class="conf-request-btn" href="javascript:;">同意</a>
+                <a class="del-request-btn ml10" href="javascript:;">拒绝</a>
+            </p>
+        </li>
+        {{/each}}
+        <div class="clearfix"></div>
+    </ul>
+    {{else}}
+        <div class="no-result" style="margin-top:1em;font-size:16px;">当前没有待回应的好友请求</div>
+    {{/if}}
+
+</div>
+
+{{!单页面js}}
+{{#section 'page_js'}}
+<script>
+    //同意加好友
+    $('.conf-request-btn').click(function(){
+        var _this = this;
+
+        var ul = $(_this).closest('ul');
+
+        var li = $(_this).closest('li');
+
+
+        $.ajax({
+            type:'POST',
+            url:'/ajax/friends',
+            data:{
+                act:'acc',
+                fuid:$(this).closest('li').data('fuid')
+            },
+            success:function(data){
+                var ul = $(_this).closest('ul');
+                switch(data.ret){
+                    case 0://添加成功
+                        $(_this).parent().html('添加成功');
+                        li.removeClass('no-response');
+                        break;
+                    case 107://已经是好友
+                        $(_this).parent().html('已经是好友');
+                        li.removeClass('no-response');
+                        break;
+                    case 101://已经是好友
+                        $(_this).parent().html('参数有误');
+                        break;
+                }
+                $('h2 strong').text(ul.find('li.no-response').length);
+                if(ul.find('li.no-response').length === 0){
+                    ul.append('<div class="no-result" style="margin-top:1em;font-size:16px;">当前没有待回应的好友请求</div>');
+                }
+            }
+        });
+    });
+
+
+    //拒绝加好友
+    $('.del-request-btn').click(function(){
+        var _this = this;
+        $.ajax({
+            type: 'POST',
+            url: '/ajax/friends',
+            data: {
+                act: 'rej',
+                fuid: $(this).closest('li').data('fuid')
+            },
+            success: function (data) {
+                switch (data.ret) {
+                    case 0://拒绝成功
+                        $(_this).unbind().closest('li').removeClass('no-response').fadeOut(500,function(){
+                            var ul = $(this).parent();
+                            $(this).remove();
+                            if(ul.find('li.no-response').length === 0){
+                                ul.append('<div class="no-result" style="margin-top:1em;font-size:16px;">当前没有新的好友请求</div>');
+                            }
+                            $('h2 strong').text(ul.find('li.no-response').length);
+                        });
+                        break;
+                    case 101://参数错误
+                        $(_this).parent().html('参数有误');
+                        break;
+                }
+            }
+        });
+    });
+</script>
+{{/section}}
