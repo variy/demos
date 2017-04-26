@@ -183,6 +183,8 @@ var webpackConfig = {
         }
     },
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        
         new CommonsChunkPlugin({
             name: 'vendors',
             filename: DEBUG ? 'vendors.js' : '[name].[hash:8].min.js'
