@@ -34,7 +34,7 @@ var getEntry = function(){
         obj[item] =  path.join(srcPath, 'pages', item, pageDefaultSetting.entry);
     });
 
-    obj.vendors = ['Zepto','Vue','underscore', 'UtilFn', 'PowerFn', 'Global'];
+    obj.vendors = ['Zepto','Vue','underscore', 'UtilFn', 'Global'];
     return obj;
 }
 
@@ -174,7 +174,6 @@ var webpackConfig = {
         // modules: [CONFIG.rootPath],
         alias: {
             underscore$: path.join( CONFIG.commonPath, '/libs/underscore.js'),
-            PowerFn$: path.join( CONFIG.commonPath, '/util/power-fn.js'),
             UtilFn$: path.join( CONFIG.commonPath, '/util/util-fn.js'),
             Zepto$: path.join( CONFIG.commonPath, '/libs/zepto.min.js'),
             Global$: path.join( srcPath, '/js/init.js'),
@@ -201,7 +200,6 @@ var webpackConfig = {
         new webpack.ProvidePlugin({
             $: 'Zepto',
             UtilFn: 'UtilFn',
-            PowerFn: 'PowerFn',
             _: 'underscore',
             Global: 'Global',
             Vue: 'Vue'
