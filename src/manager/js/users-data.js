@@ -1,13 +1,19 @@
 module.exports = [{
-    name: 'shaoyan',
+    name: '林少燕',
     img: './images/shaoyan.jpg'
 }, {
-    name: 'hefei',
+    name: '何飞',
     img: './images/hefei.jpg'
 }, {
-    name: 'xiaojing',
+    name: '林小静',
     img: './images/xiaojing.jpg'
 }, {
-    name: 'luoxia',
+    name: '李洛霞',
     img: './images/luoxia.jpg'
+}, {
+    name: '花',
+    img: './images/hua.jpg'
+}, {
+    name: '胡清霞',
+    img: './images/hua.jpg'
 }]

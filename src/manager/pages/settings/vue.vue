@@ -19,7 +19,7 @@ var userList = require('../../js/users-data');
 var id = Global.searchObj.id;
 var userD = userList[id];
 
-var totalData = JSON.parse(sessionStorage.Indicator);
+var totalData = JSON.parse(localStorage.Indicator);
 var useData = totalData[id];
 module.exports = {
     data: function() {
@@ -40,7 +40,7 @@ module.exports = {
             this.total = total;
 
             totalData[id] = this.list;
-            sessionStorage.Indicator = JSON.stringify(totalData);
+            localStorage.Indicator = JSON.stringify(totalData);
         }
     }
 }
