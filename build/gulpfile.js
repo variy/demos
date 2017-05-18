@@ -5,7 +5,7 @@ var clean = require('gulp-rimraf');
 var path = require('path');
 var webpack = require('webpack');
 
-var CONFIG = require('./config.js');
+var CONFIG = require('../config.js');
 var srcPath = CONFIG.srcPath;
 var destPath = CONFIG.destPath;
 
