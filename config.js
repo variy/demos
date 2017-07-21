@@ -1,25 +1,16 @@
 /*  
-    @debug：是否是调试环境，默认'0'非。  '1'是
+    @debug：是否是调试环境
     @pj项目名, frame
-    @reqd 请求域名的地址，local FAT UAT PROD。非调试环境为空，即用相对地址。
 */
 var path = require('path');
-var requestDomainList = {
-    // 本地
-    'local': 'http://localhost:8007',
-    // 后端个人
-    'backend': 'http://10.243.246.95:8080',
-    'FAT': 'http://stockfat.stg.pingan.com:30074',
-    'UAT': 'https://stock.stg.pingan.com',
-    'testPRD': 'https://stock.pingan.com',
-    'PRD': ''
-};
+
 var defaultOpts = {
-    debug: '1',
-    pj: 'frame',
-    reqd: 'local'
+    pj: 'manager'
 };
 console.log('>>> ' + process.argv)
+
+var likelyPort = process.argv[2];
+var port = Number(likelyPort) === Number(likelyPort) ? likelyPort : '8002';
 
 var paramObj = {};
 var argvs = process.argv.slice(2);
@@ -36,14 +27,11 @@ for(var attr in defaultOpts){
         paramObj[attr] = defaultOpts[attr];
     }
 }
-(paramObj.debug === '0') && (paramObj.reqd = 'PRD');
 
 module.exports = {
-    debug: paramObj.debug,
+    debug: process.env.NODE_ENV === 'development',
     pj: paramObj.pj,
-    port: 8002,
-    // reqd: paramObj.reqd,
-    requestDomain: requestDomainList[paramObj.reqd],
+    port: port,
     rootPath:  path.join(__dirname, './src/'),
     commonPath: path.join(__dirname, './src/common'),
     srcPath:  path.join(__dirname, './src', paramObj.pj),

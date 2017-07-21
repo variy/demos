@@ -1,3 +1,5 @@
+process.env.NODE_ENV = 'development';
+
 var express = require('express');
 var path = require('path');
 
@@ -16,7 +18,7 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 
 /*这种路径结构导致这种中间件无法*/
-if( CONFIG.debug === '1'){
+if( CONFIG.debug){
 
     var webpack = require('webpack');
     var webpackDevMiddleware = require('webpack-dev-middleware');

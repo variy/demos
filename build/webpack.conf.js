@@ -10,7 +10,7 @@ var CONFIG = require('../config.js');
 var pjPath = CONFIG.pj;
 var srcPath = CONFIG.srcPath;
 var destPath = CONFIG.destPath;
-var DEBUG = CONFIG.debug === '1';
+var DEBUG = CONFIG.debug;
 var PORT = CONFIG.port;
 
 var curJsDestPath = path.join(destPath, 'js');
@@ -46,10 +46,7 @@ var getHtmlPlugins = function(){
         //@inject 要把script插入到标签里
         var opt = {
             template: pageDefaultSetting.template,
-            params: {
-                requestDomain: CONFIG.reqd,
-                DEBUG: DEBUG
-            },
+            DEBUG: DEBUG,
             filename: item + '.html',
             chunks: ['vendors', item],
             inject: 'body'
