@@ -65,7 +65,7 @@ var getHtmlPlugins = function(){
         list.push( new HtmlwebpackPlugin(opt) );
     });
 
-    return list;          
+    return list;
 }
 
 var otherPlugins = [];
@@ -84,7 +84,7 @@ if( !DEBUG ){
 }else{
     otherPlugins= [
         new webpack.HotModuleReplacementPlugin()
-    ];  
+    ];
 }
 
 var webpackConfig = {
@@ -104,12 +104,12 @@ var webpackConfig = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
-                // 
+                //
                 // [, pageDefaultSetting.template],
                 // options: {
                 //     presets: ['es2015']
                 // }
-            }, 
+            },
         {
             test: /\.vue$/,
             loader: 'vue-loader',
@@ -120,7 +120,7 @@ var webpackConfig = {
                     // the "scss" and "sass" values for the lang attribute to the right configs here.
                     // other preprocessors should work out of the box, no loader config like this necessary.
                     'scss': 'vue-style-loader!css-loader!sass-loader',
-                    'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax' 
+                    'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
                     // {{/sass}}
                 }
                         // other vue-loader options go here
@@ -131,7 +131,7 @@ var webpackConfig = {
                 // 否则则调用file-loader，参数直接传入
                 // 'url?limit=10000&name=img/[hash:8].[name].[ext]',
                 // 'image?{bypassOnDebug:true, progressive:true,optimizationLevel:3,pngquant:{quality:"65-80",speed:4}}'
-                // /\.(png|jpe?g|gif|svg)(\?.*)?$/ 
+                // /\.(png|jpe?g|gif|svg)(\?.*)?$/
                 test: /\.((woff2?|svg)(\?v=[0-9]\.[0-9]\.[0-9]))|(woff2?|svg|jpe?g|png|eot|ttf|gif|ico)$/,
                 use: [
                     'url-loader?limit=10240&name=images/[name].[hash:8].[ext]'
@@ -142,7 +142,7 @@ var webpackConfig = {
             //     test: /\.ejs?$/,
             //     loader: 'ejs-loader',
             //     exclude:  pageDefaultSetting.template
-            // }, 
+            // },
             {
                 test: /\.less$/,
                 use: ["style-loader", "css-loader", "less-loader"]
@@ -156,11 +156,18 @@ var webpackConfig = {
 
                 // ["style-loader", "css-loader"]
 
-                
+
             }, {
                 test: /\.jsx$/,
                 exclude: /^node_modules$/,
                 use: ['jsx', 'babel?presets[]=es2015,presets[]=react']
+            },
+            {
+                test: /\.ejs$/,
+                loader: 'ejs-loader',
+                // query: {
+                //     variable: 'data',
+                // }
             }
         ]
     },
@@ -183,7 +190,7 @@ var webpackConfig = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        
+
         new CommonsChunkPlugin({
             name: 'vendors',
             filename: DEBUG ? 'vendors.js' : '[name].[hash:8].min.js'

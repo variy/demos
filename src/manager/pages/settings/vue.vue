@@ -4,6 +4,7 @@
             <p>{{ userName }}</p>
             <img src="" alt="">
             <span>总分：{{total}}</span>
+            <a href="./">回首页</a>
         </h2>
         <ul class="clearfix mar-2">
             <li class="indicator-item" v-for="item in list">
