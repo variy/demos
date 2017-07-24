@@ -39,7 +39,11 @@ if( CONFIG.debug){
         inline: true,
         stats: {
             cached: false,
-            colors: true
+            colors: true,
+            modules: false,
+            children: false,
+            chunks: false,
+            chunkModules: false
         }
     }));
     
@@ -60,15 +64,7 @@ if( CONFIG.reqd === 'local'){
 }else if( CONFIG.reqd === 'PROD' ){
     // require('./router-server')(PORT);
     var router = require(path.join(routerPath, 'router.js'))(express, app);
-    var router2 = require(path.join(routerPath, 'router2.js'))(express, app);
-    var indexRoute = require(path.join(routerPath, 'index.js'));
-    var freeDetailrouter = require(path.join(routerPath, 'freedetail.js'))(express, app);
-
     app.use(router);
-    app.use(router2);
-    app.use(indexRoute);
-    app.use( require(path.join(routerPath, 'buy.js')) );
-    app.use(freeDetailrouter);
 }else{
     // node转发——for联调
     /******* 组合 *********/
@@ -80,26 +76,6 @@ if( CONFIG.reqd === 'local'){
         console.log('router >>>' + url);
         console.log('params >>>' + JSON.stringify(req.body));
 
-        request.post(url, {json: req.body}).pipe(res);
-    });
-
-
-    app.use('/ipsportfoliofront/zuhedetail', function(req, res){
-        var url = proxyHostname + '/ipsportfoliofront/zuhedetail' + req.url;
-        console.log('router >>>' + req.url);
-        console.log('router >>>' + url);
-        console.log(typeof req.body)
-        console.log('params >>>' + JSON.stringify(req.body));
-
-        request.post(url, {json: req.body}).pipe(res);
-    });
-
-    app.use('/ipsportfoliofront/zuherelate', function(req, res){
-        var url = proxyHostname + '/ipsportfoliofront/zuherelate' + req.url;
-        console.log('router >>>' + req.url);
-        console.log('router >>>' + url);
-        console.log(typeof req.body)
-        console.log('params >>>' + JSON.stringify(req.body));
         request.post(url, {json: req.body}).pipe(res);
     });
     /******* 组合 --end-- *********/
