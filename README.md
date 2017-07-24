@@ -15,7 +15,7 @@ node app --pj=[项目名称]
 node build/build.js --pj=[项目名称]
 ```
 
-##项目
+## 项目
 
 1. Lunar-Calendar 农历日历 *未完成*
 2. calendar-vue  vue版日历*未完成*
