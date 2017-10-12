@@ -14,7 +14,7 @@ Zepto(function(){
     });
 
     new Vue({
-        el: '#tasks-area',
+        el: '#later-task-list',
         template: '<index></index>',
         components: {
             index: taskList

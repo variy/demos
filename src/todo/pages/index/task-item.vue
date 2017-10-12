@@ -3,9 +3,9 @@
         <input type="checkbox" v-model="realDone">
         <p class="task-item-content" @click="editTask(id)">
             <span class="task-item-title">{{ title}}</span>
-            <span class="task-item-date">{{ date}} {{ done}}</span>
+            <small class="task-item-date">{{ date}} {{ realDone}}</small>
         </p>
-        <i class="toright-icon"></i>
+        <i class="toright-icon">&gt;</i>
     </li>
 </template>
 <script>
