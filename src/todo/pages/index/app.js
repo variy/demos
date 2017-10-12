@@ -1,5 +1,5 @@
 var tpl = require('./tpl.ejs');
-var taskList = require('./task-list.vue');
+var index = require('./index.vue');
 var $ = Zepto
 Zepto(function(){
     $('#container').html(tpl());
@@ -14,10 +14,10 @@ Zepto(function(){
     });
 
     new Vue({
-        el: '#later-task-list',
+        el: '#tasks-area',
         template: '<index></index>',
         components: {
-            index: taskList
+            index: index
         }
     })
 })

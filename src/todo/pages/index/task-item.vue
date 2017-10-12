@@ -1,6 +1,6 @@
 <template>
     <li class="task-item">
-        <input type="checkbox" v-model="realDone">
+        <input type="checkbox" v-model="realDone" @change="toggleDone">
         <p class="task-item-content" @click="editTask(id)">
             <span class="task-item-title">{{ title}}</span>
             <small class="task-item-date">{{ date}} {{ realDone}}</small>
@@ -27,6 +27,15 @@
         methods: {
             editTask: function(id) {
                 location.hash = '!taskedit/' + id;
+            },
+            toggleDone: function(){
+                var me = this;
+                Global.eventHub.$emit('toggleDone',
+                    {
+                        id: me.id,
+                        done: me.realDone
+                    }
+                );
             }
         }
     }

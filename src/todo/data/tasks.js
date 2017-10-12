@@ -28,7 +28,7 @@ module.exports = [
         date: '2017-10-12 12:00',
         title: 'test3',
         description: 'test3-test3',
-        done: false,
+        done: true,
         tags: ['finance']
     },
     {

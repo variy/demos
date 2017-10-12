@@ -1,41 +1,80 @@
 <template>
-    <ul class="clearfix pad-12">
-        <template v-for="(item, index) in list">
-            <li class="person-item"  @click="jump(index)">
-                <a href="javascript:;">
-                    <span> {{ item.name }} </span>
-                    <p> {{ item.total}} </p>
-                    <img :src="item.img" alt="">
-                </a>
-            </li>
-        </template>
-    </ul>
+    <div>
+        <div class="task-collection-item">
+            <h3>以后</h3>
+            <div class="task-coll-content">
+                <tasklist :list="laterList"></tasklist>
+            </div>
+        </div>
+        
+        <div class="task-collection-item">
+            <h3>无日期</h3>
+            <div class="task-coll-content">
+                <tasklist :list="noDateList"></tasklist>
+            </div>
+        </div>
+        
+        <div class="task-collection-item">
+            <h3>已完成</h3>
+            <div class="task-coll-content">
+                <tasklist :list="doneList"></tasklist>
+            </div>
+        </div>
+    </div>
 </template>
 <script>
-    var userData = require('../../js/users-data');
-    var IndicatorData = JSON.parse(localStorage.Indicator);
+    var taskListData = require('../../data/tasks');
+    var taskList = require('./task-list');
 
     module.exports = {
-        data: function() {
-            var list = userData.map(function(item, index){
-                var indicatorItem = IndicatorData[index];
-                var total = 0;
-                for(var i=0, len = indicatorItem.length; i< len; i++){
-                    total += Number(indicatorItem[i].value)
-                }
-                item.total = total;
-                return item;
-            });
-            // list.sort(function(a, b){
-            //     return a.total < b.total;
-            // })
+        data: function(){
             return {
-                list: list
+                listData: taskListData,
+                laterList: [],
+                noDateList: [],
+                doneList: []
+            }
+        },
+        created: function(){
+            var me = this;
+            Global.eventHub.$on('toggleDone', function(opt) {
+                var index = -1;
+                for(var i=0; i< me.listData.length; i++){
+                    if(me.listData[i].id === opt.id){
+                        index = i;
+                        i = me.listData.length;
+                    }
+                }
+
+                if(index === -1)throw Error('not exit this id' + opt.id);
+                var newObj = _.extend(me.listData[index], {done: opt.done});
+
+                Vue.set(me.listData, index, newObj);
+                console.log(JSON.stringify(me.listData))
+            });
+            this.paramsChange();
+
+        },
+        components: {
+            tasklist: taskList
+        },
+        watch: {
+            listData: function(){
+                this.paramsChange();
             }
         },
         methods: {
-            jump: function(id){
-                location.href = './settings.html?id=' + id;
+            paramsChange: function(){
+                this.doneList = this.listData.filter(function(item) {
+                    return item.done
+                });
+                this.noDateList = this.listData.filter(function(item) {
+                    return !item.date && !item.done;
+                });
+
+                this.laterList = this.listData.filter(function(item) {
+                    return item.date && !item.done;
+                });
             }
         }
     }

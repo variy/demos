@@ -2,5 +2,6 @@ var $ = window.$ = Zepto;
 require('../css/main.css');
 
 module.exports = {
-    searchObj: UtilFn.parseSearch()
+    searchObj: UtilFn.parseSearch(),
+    eventHub: new Vue
 }
