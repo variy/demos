@@ -23,6 +23,7 @@
     </div>
 </template>
 <script>
+var j = 0;
     var taskListData = require('../../data/tasks');
     var taskList = require('./task-list');
 
@@ -50,6 +51,7 @@
                 var newObj = _.extend(me.listData[index], {done: opt.done});
 
                 Vue.set(me.listData, index, newObj);
+                console.warn(++j)
                 console.log(JSON.stringify(me.listData))
             });
             this.paramsChange();

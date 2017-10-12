@@ -1,6 +1,6 @@
 <template>
     <li class="task-item">
-        <input type="checkbox" v-model="realDone" @change="toggleDone">
+        <input type="checkbox" :checked="done" @change="toggleDone">
         <p class="task-item-content" @click="editTask(id)">
             <span class="task-item-title">{{ title}}</span>
             <small class="task-item-date">{{ date}} {{ realDone}}</small>
@@ -33,7 +33,7 @@
                 Global.eventHub.$emit('toggleDone',
                     {
                         id: me.id,
-                        done: me.realDone
+                        done: !me.realDone
                     }
                 );
             }
