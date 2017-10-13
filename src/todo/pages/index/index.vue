@@ -23,6 +23,7 @@
         </div>
  -->
         <div class="task-collection-item" v-for="item in collection">
+            <!--  v-show="collection.length > 1" -->
             <h3>{{ item.txt}}</h3>
             <div class="task-coll-content">
                 <tasklist :list="item.list"></tasklist>
@@ -44,7 +45,14 @@
         created: function(){
             var me = this;
             Global.eventHub.$on('filterToday', function(opt){
-
+                
+                var arr = [{
+                    txt: '今天',
+                    list: me.listData.filter(function(item) {
+                        return new Date(item.date).toDateString() === new Date().toDateString();
+                    })
+                }];
+                me.collection = arr;
             });
 
 
