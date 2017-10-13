@@ -34,7 +34,7 @@
 <script>
     var taskListData = require('../../data/tasks');
     var taskList = require('./task-list');
-
+    var category = require('../../models/categories')
     module.exports = {
         data: function(){
             return {
@@ -52,6 +52,7 @@
                         return new Date(item.date).toDateString() === new Date().toDateString();
                     })
                 }];
+                // me.listData = _.extend(arr);
                 me.collection = arr;
             });
 
@@ -85,25 +86,10 @@
         methods: {
             paramsChange: function() {
                 var me = this;
-                var arr = [{
-                    txt: '以后',
-                    list: me.listData.filter(function(item) {
-                        return item.date && !item.done;
-                    })
-                }, {
-                    txt: '无日期',
-                    list: me.listData.filter(function(item) {
-                        return !item.date && !item.done;
-                    })
-                }, {
-                    txt: '已完成',
-                    list: me.listData.filter(function(item) {
-                        return item.done;
-                    })
-                }];
+                category.listData = category.initData(this.listData)
 
-                for(var attr in arr){
-                    Vue.set(me.collection, attr, arr[attr])
+                for(var attr in category.listData){
+                    Vue.set(me.collection, attr, category.listData[attr])
                 }
             }
         }
