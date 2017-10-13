@@ -34,45 +34,41 @@
 <script>
     var taskListData = require('../../data/tasks');
     var taskList = require('./task-list');
-    var category = require('../../models/categories')
+    var Category = require('../../models/categories');
+    var category = new Category(taskListData, 'all');
     module.exports = {
         data: function(){
             return {
-                collection: [ ],
-                listData: taskListData
+                collection: category.listData
             }
         },
         created: function(){
             var me = this;
             Global.eventHub.$on('filterToday', function(opt){
+                category.toggleType('today')
+                me.paramsChange();
                 
-                var arr = [{
-                    txt: '今天',
-                    list: me.listData.filter(function(item) {
-                        return new Date(item.date).toDateString() === new Date().toDateString();
-                    })
-                }];
-                // me.listData = _.extend(arr);
-                me.collection = arr;
             });
 
 
             Global.eventHub.$on('toggleDone', function(opt) {
-                var index = -1;
-                for(var i=0; i< me.listData.length; i++){
-                    if(me.listData[i].id === opt.id){
-                        index = i;
-                        i = me.listData.length;
-                    }
-                }
+                category.initData(opt.id, opt);
+                me.paramsChange();
+                // var index = -1;
+                // for(var i=0; i< me.listData.length; i++){
+                //     if(me.listData[i].id === opt.id){
+                //         index = i;
+                //         i = me.listData.length;
+                //     }
+                // }
 
-                if(index === -1)throw Error('not exit this id' + opt.id);
-                var newObj = _.extend(me.listData[index], {done: opt.done});
+                // if(index === -1)throw Error('not exit this id' + opt.id);
+                // var newObj = _.extend(me.listData[index], {done: opt.done});
 
-                Vue.set(me.listData, index, newObj);
-                console.log(JSON.stringify(me.listData))
+                // Vue.set(me.listData, index, newObj);
+                // console.log(JSON.stringify(me.listData))
             });
-            this.paramsChange();
+            // 
 
         },
         components: {
@@ -85,12 +81,7 @@
         },
         methods: {
             paramsChange: function() {
-                var me = this;
-                category.listData = category.initData(this.listData)
-
-                for(var attr in category.listData){
-                    Vue.set(me.collection, attr, category.listData[attr])
-                }
+                this.collection = category.listData;
             }
         }
     }
