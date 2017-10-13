@@ -1,5 +1,6 @@
 <template>
     <div>
+                <!-- 
         <div class="task-collection-item">
             <h3>以后</h3>
             <div class="task-coll-content">
@@ -20,27 +21,24 @@
                 <tasklist :list="doneList"></tasklist>
             </div>
         </div>
-        <!--  -->
-        <!-- <div class="task-collection-item" v-for="item in collection">
-            <h3>item.txt</h3>
+ -->
+        <div class="task-collection-item" v-for="item in collection">
+            <h3>{{ item.txt}}</h3>
             <div class="task-coll-content">
                 <tasklist :list="item.list"></tasklist>
             </div>
-        </div> -->
+        </div>
     </div>
 </template>
 <script>
-var j = 0;
     var taskListData = require('../../data/tasks');
     var taskList = require('./task-list');
 
     module.exports = {
         data: function(){
             return {
-                listData: taskListData,
-                laterList: [],
-                noDateList: [],
-                doneList: []
+                collection: [ ],
+                listData: taskListData
             }
         },
         created: function(){
@@ -63,7 +61,6 @@ var j = 0;
                 var newObj = _.extend(me.listData[index], {done: opt.done});
 
                 Vue.set(me.listData, index, newObj);
-                console.warn(++j)
                 console.log(JSON.stringify(me.listData))
             });
             this.paramsChange();
@@ -78,17 +75,28 @@ var j = 0;
             }
         },
         methods: {
-            paramsChange: function(){
-                this.doneList = this.listData.filter(function(item) {
-                    return item.done
-                });
-                this.noDateList = this.listData.filter(function(item) {
-                    return !item.date && !item.done;
-                });
+            paramsChange: function() {
+                var me = this;
+                var arr = [{
+                    txt: '以后',
+                    list: me.listData.filter(function(item) {
+                        return item.date && !item.done;
+                    })
+                }, {
+                    txt: '无日期',
+                    list: me.listData.filter(function(item) {
+                        return !item.date && !item.done;
+                    })
+                }, {
+                    txt: '已完成',
+                    list: me.listData.filter(function(item) {
+                        return item.done;
+                    })
+                }];
 
-                this.laterList = this.listData.filter(function(item) {
-                    return item.date && !item.done;
-                });
+                for(var attr in arr){
+                    Vue.set(me.collection, attr, arr[attr])
+                }
             }
         }
     }
