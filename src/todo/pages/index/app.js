@@ -1,5 +1,6 @@
 var tpl = require('./tpl.ejs');
 var index = require('./index.vue');
+var categories = require('./categories');
 var $ = Zepto
 Zepto(function(){
     $('#container').html(tpl());
@@ -18,6 +19,14 @@ Zepto(function(){
         template: '<index></index>',
         components: {
             index: index
+        }
+    })
+
+    new Vue({
+        el: '#left-side-box',
+        template: '<categories></categories>',
+        components: {
+            categories: categories
         }
     })
 })

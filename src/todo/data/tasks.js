@@ -37,5 +37,20 @@ module.exports = [
         description: 'test3-test3',
         done: false,
         tags: ['finance']
+    },
+    {
+        id: '005',
+        title: 'test5',
+        description: 'test3-test3',
+        done: false,
+        tags: ['finance']
+    },
+    {
+        id: '006',
+        title: 'test6',
+        date: '2017-10-12 12:00',
+        description: 'test3-test3',
+        done: false,
+        tags: ['finance']
     }
 ]

@@ -20,6 +20,13 @@
                 <tasklist :list="doneList"></tasklist>
             </div>
         </div>
+        <!--  -->
+        <!-- <div class="task-collection-item" v-for="item in collection">
+            <h3>item.txt</h3>
+            <div class="task-coll-content">
+                <tasklist :list="item.list"></tasklist>
+            </div>
+        </div> -->
     </div>
 </template>
 <script>
@@ -38,6 +45,11 @@ var j = 0;
         },
         created: function(){
             var me = this;
+            Global.eventHub.$on('filterToday', function(opt){
+
+            });
+
+
             Global.eventHub.$on('toggleDone', function(opt) {
                 var index = -1;
                 for(var i=0; i< me.listData.length; i++){
