@@ -34,7 +34,7 @@ var getEntry = function(){
         obj[item] =  path.join(srcPath, 'pages', item, pageDefaultSetting.entry);
     });
 
-    obj.vendors = ['Zepto','Vue','underscore', 'UtilFn', 'Global'];
+    obj.vendors = ['Zepto','Vue','underscore', 'Routie', 'UtilFn', 'Global'];
     return obj;
 }
 
@@ -181,8 +181,8 @@ var webpackConfig = {
             UtilFn$: path.join( CONFIG.commonPath, '/util/util-fn.js'),
             Zepto$: path.join( CONFIG.commonPath, '/libs/zepto.min.js'),
             Global$: path.join( srcPath, '/js/init.js'),
-            Vue$: path.join( CONFIG.commonPath, '/libs/vue.js')
-
+            Vue$: path.join( CONFIG.commonPath, '/libs/vue.js'),
+            Routie: path.join( CONFIG.commonPath, '/libs/routie.js')
         }
     },
     plugins: [
@@ -206,7 +206,8 @@ var webpackConfig = {
             UtilFn: 'UtilFn',
             _: 'underscore',
             Global: 'Global',
-            Vue: 'Vue'
+            Vue: 'Vue',
+            Routie: 'Routie'
         })
     ].concat(getHtmlPlugins())
     .concat(otherPlugins)

@@ -1,5 +1,4 @@
 var tpl = require('./tpl.ejs');
-var index = require('./index.vue');
 var categories = require('./categories');
 var $ = Zepto
 Zepto(function(){
@@ -14,13 +13,7 @@ Zepto(function(){
         leftSideEl.css('width', leftWidth+'px');
     });
 
-    new Vue({
-        el: '#tasks-area',
-        template: '<index></index>',
-        components: {
-            index: index
-        }
-    })
+    
 
     new Vue({
         el: '#left-side-box',
@@ -29,7 +22,4 @@ Zepto(function(){
             categories: categories
         }
     })
-})
-// alert(tpl({name: 'world'}))
-// debugger;
-// Zepto('<div></div>').html(tpl({name: 'world'})).appendTo('body')
+});

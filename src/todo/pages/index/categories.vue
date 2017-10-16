@@ -33,6 +33,7 @@
         },
         methods: {
             toggleType: function(type){
+                location.hash = '';
                 Global.eventHub.$emit('toggleType', type || 'all');
             }
         }
