@@ -1,3 +1,4 @@
+var taskListData = require('../data/tasks');
 var optsMap = {
     'all': {
         opts: require('./all-model'),
@@ -52,7 +53,7 @@ O.prototype.initData = function(id, opts){
     this.listData = _initData(this.validList, this.opts);
 }
 
-module.exports = O;
+module.exports = new O(taskListData, 'all');
 
 
 

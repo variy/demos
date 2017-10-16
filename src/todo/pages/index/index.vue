@@ -32,10 +32,9 @@
     </div>
 </template>
 <script>
-    var taskListData = require('../../data/tasks');
+    
     var taskList = require('./task-list');
-    var Category = require('../../models/categories');
-    var category = new Category(taskListData, 'all');
+    var category = require('../../models/categories');
     module.exports = {
         data: function(){
             return {
