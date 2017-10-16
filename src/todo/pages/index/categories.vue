@@ -2,11 +2,8 @@
     <div id="left-side">
         <div class="static-menu-list">
             <ul>
-                <li><i class="all-icon"></i>所有</li>
-                <li @click="filterToday"><i class="all-icon"></i>{{ today.txt}}</li>
-                <li><i class="all-icon"></i>{{ lastDays7.txt}}</li>
-                <li><i class="all-icon"></i>收集箱</li>
-            </ul>
+                <li v-for="item in list" @click="toggleType(item.type), active_tab = item.type" :class="active_tab=== item.type ? 'active': ''">{{ item.txt}}</li>
+            </ul> 
         </div>
         <div id="customization-menu-list">
             
@@ -25,29 +22,17 @@
     module.exports = {
         data: function(){
             return {
-                'today': {
-                    txt: '今天',
-                    filter: function(list){
-                        list.filter(function(item){
-                            return PowerFn.judgeNearbyDate(item.data) === 0;
-                        })
-                        
-                    }
-                },
-                'lastDays7': {
-                    txt: '过去7天',
-                    filter: function(list){
-                        list.filter(function(item){
-                            return PowerFn.judgeNearbyDate(item.data) === 0;
-                        })
-                        
-                    }
-                },
+                list: [
+                    { type: 'all', txt: '所有'},
+                    { type: 'today', txt: '今天'},
+                    { type: 'lastDays7', txt: '最近7天'}
+                ],
+                active_tab: 'all'
             }
         },
         methods: {
-            filterToday: function(){
-                Global.eventHub.$emit('filterToday', this.today)
+            toggleType: function(type){
+                Global.eventHub.$emit('toggleType', type || 'all');
             }
         }
     }

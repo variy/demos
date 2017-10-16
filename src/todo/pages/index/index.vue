@@ -1,27 +1,5 @@
 <template>
     <div>
-                <!-- 
-        <div class="task-collection-item">
-            <h3>以后</h3>
-            <div class="task-coll-content">
-                <tasklist :list="laterList"></tasklist>
-            </div>
-        </div>
-        
-        <div class="task-collection-item">
-            <h3>无日期</h3>
-            <div class="task-coll-content">
-                <tasklist :list="noDateList"></tasklist>
-            </div>
-        </div>
-        
-        <div class="task-collection-item">
-            <h3>已完成</h3>
-            <div class="task-coll-content">
-                <tasklist :list="doneList"></tasklist>
-            </div>
-        </div>
- -->
         <div class="task-collection-item" v-for="item in collection">
             <!--  v-show="collection.length > 1" -->
             <h3>{{ item.txt}}</h3>
@@ -43,8 +21,8 @@
         },
         created: function(){
             var me = this;
-            Global.eventHub.$on('filterToday', function(opt){
-                category.toggleType('today')
+            Global.eventHub.$on('toggleType', function(type){
+                category.toggleType(type)
                 me.paramsChange();
                 
             });
