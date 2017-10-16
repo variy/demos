@@ -25,6 +25,7 @@
                 list: [
                     { type: 'all', txt: '所有'},
                     { type: 'today', txt: '今天'},
+                    { type: 'tomorrow', txt: '明天'},
                     { type: 'lastDays7', txt: '最近7天'}
                 ],
                 active_tab: 'all'

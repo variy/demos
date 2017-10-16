@@ -13,6 +13,14 @@ var optsMap = {
                 return new Date(item.date).toDateString() === new Date().toDateString();
             })
         }
+    },
+    'tomorrow': {
+        opts: require('./today-model'),
+        _filter: function(list){
+            return list.filter(function(item){
+                return new Date(item.date).toDateString() === new Date().toDateString();
+            })
+        }
     }
 }
 

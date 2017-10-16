@@ -26,7 +26,7 @@ module.exports = {
                 var now  = new Date();
                 now.setDate(now.getDate() + 1);
                 var tomString = now.toDateString();
-                return !item.done && (new Date(item.date).toDateString() === tomString);
+                return new Date(item.date).toDateString() === tomString;
             });
         }
     },
