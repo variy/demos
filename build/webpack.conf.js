@@ -25,7 +25,9 @@ var pageDefaultSetting = {
 }
 
 var pageList = fs.readdirSync(path.resolve(CONFIG.srcPath, './pages'));
-
+pageList = pageList.filter(function(item){
+    return item.charAt(0) !== '.' 
+});
 console.log(JSON.stringify(pageList));
 
 var getEntry = function(){
