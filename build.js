@@ -1,6 +1,6 @@
 process.env.NODE_ENV = 'production';
 
-require('shelljs/global')
+var shell = require('shelljs');
 
 var path = require('path')
 var CONFIG = require('../config')
@@ -12,10 +12,10 @@ var srcPath = CONFIG.srcPath;
 var spinner = ora('building for production...');
 
 spinner.start()
-rm('-rf', CONFIG.destPath)
-mkdir('-p', CONFIG.destPath)
-cp('-R', path.join(srcPath, '/static/'), CONFIG.destPath);
-cp('-R', path.join(srcPath, '/images/'), CONFIG.destPath);
+shell.rm('-rf', CONFIG.destPath)
+shell.mkdir('-p', CONFIG.destPath)
+shell.cp('-R', path.join(srcPath, '/static/'), CONFIG.destPath);
+shell.cp('-R', path.join(srcPath, '/images/'), CONFIG.destPath);
 var tamp1 = new Date().getTime();
 webpack(webpackConfig, function(err, stats) {
   spinner.stop()

@@ -2,8 +2,7 @@
     "restartable": "rs",
     "verbose": false,
     "watch": [
-        "router-server.js",
-        "../routes/investplus/"
+        
     ],
     "ignore": [
         ".git",
