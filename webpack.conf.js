@@ -192,12 +192,12 @@ var webpackConfig = {
         extensions: ['.js', '.ejs', 'jsx', '.vue'],
         // modules: [CONFIG.rootPath],
         alias: {
-            underscore$: path.join( CONFIG.commonPath, '/libs/underscore.js'),
-            UtilFn$: path.join( CONFIG.commonPath, '/util/util-fn.js'),
-            Zepto$: path.join( CONFIG.commonPath, '/libs/zepto.min.js'),
-            Constant$: path.join( CONFIG.commonPath, '/util/constant.js'),
-            Vue$: path.join( CONFIG.commonPath, '/libs/vue.js'),
-            Routie: path.join( CONFIG.commonPath, '/libs/routie.js')
+            underscore$: path.join( CONFIG.srcRootPath, 'js/libs/underscore.js'),
+            UtilFn$: path.join( CONFIG.srcRootPath, 'js/util/util-fn.js'),
+            Zepto$: path.join( CONFIG.srcRootPath, 'js/libs/zepto.min.js'),
+            Constant$: path.join( CONFIG.srcRootPath, 'js/util/constant.js'),
+            Vue$: path.join( CONFIG.srcRootPath, 'js/libs/vue.js'),
+            Routie: path.join( CONFIG.srcRootPath, 'js/libs/routie.js')
         }
     },
     plugins: [
@@ -205,7 +205,7 @@ var webpackConfig = {
 
         new CommonsChunkPlugin({
             name: 'vendors',
-            filename: DEBUG ? 'vendors.js' : '[name].[hash:8].min.js'
+            filename: DEBUG ? 'vendors.js' : '../common/[name].[hash:8].min.js'
         }),
 
         // new ExtractTextPlugin({

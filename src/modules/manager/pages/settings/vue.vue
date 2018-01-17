@@ -16,6 +16,7 @@
     </div>
 </template>
 <script>
+var Global = require('../../init.js');
 var userList = require('../../js/users-data');
 var id = Global.searchObj.id;
 var userD = userList[id];

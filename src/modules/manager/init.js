@@ -1,7 +1,7 @@
 var $ = window.$ = Zepto;
-require('../css/main.css');
-var usersData = require('./users-data.js');
-var IndicatorDefault = require('./indicator-data.js');
+require('./css/main.css');
+var usersData = require('./js/users-data.js');
+var IndicatorDefault = require('./js/indicator-data.js');
 !('Indicator' in localStorage) && ( localStorage.Indicator = '{}');
 
 var IndicatorData = JSON.parse(localStorage.Indicator);

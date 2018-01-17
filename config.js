@@ -29,12 +29,11 @@ for(var attr in defaultOpts){
 }
 
 module.exports = {
-    debug: process.env.NODE_ENV === 'development',
+    debug: true,//process.env.NODE_ENV === 'development',
     pj: paramObj.pj,
     port: port,
-    rootPath:  path.join(__dirname, './src/'),
-    commonPath: path.join(__dirname, './src/common'),
-    srcPath:  path.join(__dirname, './src', paramObj.pj),
-    destPath: path.join(__dirname, './dist/', paramObj.pj),
-    routerPath: path.join(__dirname, './routes', paramObj.pj)
+    srcRootPath:  path.join(__dirname, './src'),
+    srcPath:  path.join(__dirname, 'src/modules', paramObj.pj),
+    destRootPath: path.join(__dirname, './dist/'),
+    destPath: path.join(__dirname, './dist/', paramObj.pj)
 };

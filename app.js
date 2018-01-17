@@ -15,6 +15,8 @@ if( CONFIG.debug){
 
     var compiler = webpack(webpackConfig);
     app.use(express.static(path.resolve(__dirname, CONFIG.srcPath)));
+    app.use('/common', express.static(path.resolve(__dirname, CONFIG.srcRootPath, 'common')));
+
     app.use(webpackDevMiddleware(compiler, {
         publicPath: webpackConfig.output.publicPath,
         noInfo: false,
@@ -35,7 +37,7 @@ if( CONFIG.debug){
 
 }else{
     // 调试生产地址，请求本地编译后的代码
-    app.use(express.static( path.resolve(__dirname, CONFIG.destPath)));
+    app.use(express.static( path.resolve(__dirname, CONFIG.destRootPath)));
 }
     
 app.listen(PORT, function () {

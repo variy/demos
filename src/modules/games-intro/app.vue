@@ -28,7 +28,7 @@ export default {
         }, {
             txt: '一笔画',
             date: '2016-08-14',
-            img: './images/onedraw.png',
+            img: '/common/images/onedraw.png',
             href: 'http://games.variy.top/onedraw'
         }]
     };
