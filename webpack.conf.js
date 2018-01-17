@@ -6,7 +6,7 @@ var HtmlwebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var fs = require('fs');
 
-var CONFIG = require('../config.js');
+var CONFIG = require('./config.js');
 var pjPath = CONFIG.pj;
 var srcPath = CONFIG.srcPath;
 var destPath = CONFIG.destPath;
@@ -24,19 +24,32 @@ var pageDefaultSetting = {
     DEBUG: DEBUG
 }
 
-var pageList = fs.readdirSync(path.resolve(CONFIG.srcPath, './pages'));
-pageList = pageList.filter(function(item){
-    return item.charAt(0) !== '.' 
-});
+// 获取页面列表
+var pageList = [],
+    isPageListExist = fs.existsSync(path.resolve(CONFIG.srcPath, 'pages'));
+if(isPageListExist){
+    pageList = fs.readdirSync(path.resolve(CONFIG.srcPath, './pages'));
+    pageList = pageList.filter(function(item){
+        return item.charAt(0) !== '.' 
+    });
+}else{
+    pageList = ['index'];
+}
 console.log(JSON.stringify(pageList));
 
 var getEntry = function(){
     var obj = {};
-    pageList.forEach(function(item){
-        obj[item] =  path.join(srcPath, 'pages', item, pageDefaultSetting.entry);
-    });
+    if(pageList.length > 1){
+        pageList.forEach(function(item){
+            obj[item] =  path.join(srcPath, 'pages', item, pageDefaultSetting.entry);
+        });
 
-    obj.vendors = ['Zepto','Vue','underscore', 'Routie', 'UtilFn', 'Global'];
+    }else{
+        obj.index = path.join(srcPath, pageDefaultSetting.entry);
+    }
+
+    obj.vendors = ['Zepto','Vue','underscore', 'Routie', 'UtilFn', 'Constant'];
+    
     return obj;
 }
 
@@ -182,7 +195,7 @@ var webpackConfig = {
             underscore$: path.join( CONFIG.commonPath, '/libs/underscore.js'),
             UtilFn$: path.join( CONFIG.commonPath, '/util/util-fn.js'),
             Zepto$: path.join( CONFIG.commonPath, '/libs/zepto.min.js'),
-            Global$: path.join( srcPath, '/js/init.js'),
+            Constant$: path.join( CONFIG.commonPath, '/util/constant.js'),
             Vue$: path.join( CONFIG.commonPath, '/libs/vue.js'),
             Routie: path.join( CONFIG.commonPath, '/libs/routie.js')
         }

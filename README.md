@@ -15,6 +15,12 @@ node app --pj=[项目名称]
 node build/build.js --pj=[项目名称]
 ```
 
+## 项目目录结构
+
+src下面一个文件夹就是一个项目。 每个项目下面，template.ejs 是模板，其中：
+1. pages是下面每个文件夹名是页面名称，文件夹中app.js是该页面的启动文件。
+2. 没有pages文件夹时，默认只有一个页面，启动文件就是app.js
+
 ## 项目
 
 1. Lunar-Calendar 农历日历 *未完成*
