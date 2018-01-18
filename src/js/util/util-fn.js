@@ -1,3 +1,8 @@
+// import Vue from 'vue'
+var ElementUI = require('element-ui')
+require('element-ui/lib/theme-chalk/index.css')
+
+Vue.use(ElementUI);
 var o = {
     parseSearch: function(){
         var obj = {};
